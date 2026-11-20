@@ -6,7 +6,7 @@ import process from 'node:process'
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   // Where the Spring Boot backend runs during development
-  const backendTarget = env.VITE_PROXY_TARGET || 'http://localhost:8080'
+  const backendTarget = env.VITE_PROXY_TARGET || 'http://localhost:8081'
 
   // Serve the dev server over HTTPS when the local certificate is present
   const hasCert = fs.existsSync('ssl/key.pem') && fs.existsSync('ssl/cert.pem')
