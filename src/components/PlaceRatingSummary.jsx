@@ -3,6 +3,7 @@ import { Card, Row, Col } from 'react-bootstrap';
 import { FaStar, FaStarHalfAlt, FaRegStar, FaInfoCircle } from 'react-icons/fa';
 import axios from 'axios';
 import './PlaceRatingSummary.css';
+import { API_BASE_URL } from '../config';
 
 const PlaceRatingSummary = ({ placeId }) => {
   const [ratings, setRatings] = useState(null);
@@ -13,7 +14,7 @@ const PlaceRatingSummary = ({ placeId }) => {
     const fetchRatings = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://localhost:8443/api/feedback/place/${placeId}/detailed-ratings`);
+        const response = await axios.get(`${API_BASE_URL}/feedback/place/${placeId}/detailed-ratings`);
 
         // Check if the ratings data is empty or all ratings are 0
         const hasRatings = response.data &&
@@ -26,8 +27,9 @@ const PlaceRatingSummary = ({ placeId }) => {
           setRatings(response.data);
           setError(null);
         } else {
+          // Not an error: the "no ratings yet" card is shown below
           setRatings(null);
-          setError("No ratings available yet.");
+          setError(null);
         }
 
       } catch (err) {
@@ -77,7 +79,19 @@ const PlaceRatingSummary = ({ placeId }) => {
     return <div className="prs-loading">Loading ratings...</div>;
   }
 
-  // This is the new conditional render for no ratings
+  if (error) {
+    return (
+      <Card className="prs-no-rating-card">
+        <Card.Body className="text-center">
+          <FaInfoCircle className="prs-info-icon" />
+          <h5 className="mt-3 prs-no-rating-text">{error}</h5>
+          <p className="text-muted">Please try again later.</p>
+        </Card.Body>
+      </Card>
+    );
+  }
+
+  // No ratings yet
   if (!ratings) {
     return (
       <Card className="prs-no-rating-card">

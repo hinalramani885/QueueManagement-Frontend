@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
@@ -29,16 +29,8 @@ const AdminProviderDetail = () => {
   const [showResetModal, setShowResetModal] = useState(false);
   const [resetLoading, setResetLoading] = useState(false);
 
-  useEffect(() => {
-    if (!token || role !== 'ADMIN') {
-      navigate('/');
-      return;
-    }
-    fetchProvider();
-    fetchAllPlaces();
-  }, [providerId, token, role, navigate]);
 
-  const fetchProvider = async () => {
+  const fetchProvider = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -56,16 +48,25 @@ const AdminProviderDetail = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [providerId]);
 
-  const fetchAllPlaces = async () => {
+  const fetchAllPlaces = useCallback(async () => {
     try {
       const response = await axiosInstance.get('/admin/places-with-queues');
       setAllPlaces(response.data);
     } catch (err) {
       console.error('Failed to fetch places:', err);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    if (!token || role !== 'ADMIN') {
+      navigate('/');
+      return;
+    }
+    fetchProvider();
+    fetchAllPlaces();
+  }, [token, role, navigate, fetchProvider, fetchAllPlaces]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;

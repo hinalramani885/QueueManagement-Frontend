@@ -1,5 +1,5 @@
 // src/components/QRScannerModal.jsx
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Modal, Button, Alert, Spinner, Form } from 'react-bootstrap';
 import { Html5Qrcode } from 'html5-qrcode';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -21,7 +21,7 @@ const QRScannerModal = ({ show, onHide }) => {
   const { token: isLoggedIn } = useSelector((state) => state.auth);
 
   // Cleanup scanner
-  const stopScanner = async () => {
+  const stopScanner = useCallback(async () => {
     if (scannerRef.current && scannerInitialized.current) {
       try {
         await scannerRef.current.stop();
@@ -34,7 +34,7 @@ const QRScannerModal = ({ show, onHide }) => {
         setScanning(false);
       }
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (!show) {
@@ -55,10 +55,10 @@ const QRScannerModal = ({ show, onHide }) => {
         await scanner.start(
           { facingMode: 'environment' },
           { fps: 10, qrbox: { width: 250, height: 250 } },
-          (decodedText) => handleScanSuccess(decodedText),
+          (decodedText) => handleScanSuccessRef.current(decodedText),
           (errorMessage) => console.debug(errorMessage)
         );
-      } catch (err) {
+      } catch {
         setError('Camera access failed. Please upload an image instead.');
         setScanning(false);
       }
@@ -67,7 +67,7 @@ const QRScannerModal = ({ show, onHide }) => {
     startScanner();
 
     return () => { stopScanner(); };
-  }, [show]);
+  }, [show, stopScanner]);
 
   const processQrData = async (data) => {
     try {
@@ -88,7 +88,7 @@ const QRScannerModal = ({ show, onHide }) => {
 
       if (isLoggedIn) {
         // Direct join
-        const response = await axiosInstance.post('/queues/join-by-qr', { queueId, tokenType });
+        await axiosInstance.post('/queues/join-by-qr', { queueId, tokenType });
         toast.success('You have joined the queue!');
         onHide();
         navigate(`/customer/queue/${queueId}`);
@@ -106,6 +106,12 @@ const QRScannerModal = ({ show, onHide }) => {
   const handleScanSuccess = (decodedText) => {
     stopScanner().then(() => processQrData(decodedText));
   };
+  // The camera callback is registered once per opening; always call the latest handler
+  // (it depends on isLoggedIn, onHide, navigate ...)
+  const handleScanSuccessRef = useRef(handleScanSuccess);
+  useEffect(() => {
+    handleScanSuccessRef.current = handleScanSuccess;
+  });
 
   const handleFileUpload = async () => {
     if (!file) return;

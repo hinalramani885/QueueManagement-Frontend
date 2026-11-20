@@ -3,7 +3,7 @@ import axiosInstance from '../utils/axiosInstance';
 
 export const fetchUserTokenHistory = createAsyncThunk(
   'userTokenHistory/fetch',
-  async ({ days = 30, page = 0, size = 20 }, { rejectWithValue, getState }) => {
+  async ({ days = 30, page = 0, size = 20 }, { rejectWithValue }) => {
     try {
       // Request one extra to detect next page
       const response = await axiosInstance.get('/user/tokens', {

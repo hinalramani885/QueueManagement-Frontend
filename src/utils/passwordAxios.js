@@ -1,8 +1,9 @@
 //src/utils/passwordAxios.js
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 const passwordAxios = axios.create({
-  baseURL: 'https://localhost:8443/api/password',
+  baseURL: `${API_BASE_URL}/password`,
   headers: {
     'Content-Type': 'application/json',
   },

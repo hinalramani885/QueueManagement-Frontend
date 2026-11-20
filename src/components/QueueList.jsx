@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { FaUserCheck, FaCheckCircle, FaTimesCircle, FaEye } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
-import WebSocketService from '../services/websocketService';
 import { toast } from 'react-toastify';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { getShortTokenId } from '../utils/tokenUtils';
@@ -10,10 +8,10 @@ import { Card, Button, Badge } from 'react-bootstrap';
 import CancelTokenModal from './CancelTokenModal';
 import axiosInstance from '../utils/axiosInstance';
 
-const QueueList = ({ queue, onServeNext, onViewUserDetails }) => {
+// "Serve next" is triggered from the ProviderDashboard toolbar, not from this list
+const QueueList = ({ queue, onViewUserDetails }) => {
     const [showCancelModal, setShowCancelModal] = useState(false);
     const [tokenToCancel, setTokenToCancel] = useState(null);
-    const { token: authToken } = useSelector((state) => state.auth);
 
     if (!queue) {
         return (
@@ -26,19 +24,6 @@ const QueueList = ({ queue, onServeNext, onViewUserDetails }) => {
     const inServiceToken = queue.tokens?.find(t => t.status === 'IN_SERVICE');
     const waitingTokens = queue.tokens?.filter(t => t.status === 'WAITING') || [];
 
-    const handleServeNext = () => {
-        if (onServeNext) {
-            onServeNext();
-        } else if (!inServiceToken && waitingTokens.length > 0) {
-            const success = WebSocketService.sendMessage('/app/queue/serve-next', { queueId: queue.id });
-            if (!success) {
-                toast.error("Failed to send serve next request. Please try again.");
-            }
-        } else {
-            toast.error("Cannot serve next token. A token is already in service or the queue is empty.");
-        }
-    };
-
     const handleCompleteToken = async (tokenId) => {
         try {
             await axiosInstance.post(
@@ -46,7 +31,7 @@ const QueueList = ({ queue, onServeNext, onViewUserDetails }) => {
                 { tokenId }
             );
             toast.success(`Token ${tokenId} completed successfully!`);
-        } catch (error) {
+        } catch {
             toast.error("Failed to complete token.");
         }
     };
@@ -63,7 +48,7 @@ const QueueList = ({ queue, onServeNext, onViewUserDetails }) => {
             );
             toast.info(`Token ${tokenToCancel.tokenId} has been cancelled.`);
             // Optionally refresh queue data
-        } catch (error) {
+        } catch {
             toast.error('Failed to cancel token.');
         }
     };
@@ -87,7 +72,7 @@ const QueueList = ({ queue, onServeNext, onViewUserDetails }) => {
                 newCombinedList
             );
             toast.success("Queue order updated!");
-        } catch (error) {
+        } catch {
             toast.error("Failed to reorder queue.");
         }
     };

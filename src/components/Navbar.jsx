@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, NavDropdown, Badge, Collapse } from 'react-bootstrap';
@@ -12,6 +12,7 @@ import { toggleDarkMode } from '../redux/authSlice';
 import { toast } from "react-toastify";
 import { messaging, getToken } from '../firebase';
 import axiosInstance from '../utils/axiosInstance';
+import { backendUrl } from '../config';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -21,12 +22,10 @@ const Navbar = () => {
 
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const logoRef = useRef(null);
   const [showScanner, setShowScanner] = useState(false);
 
   const isAuthenticated = !!token;
   const { preferences } = useSelector((state) => state.auth);
-const apiBaseUrl = 'https://localhost:8443';
 
 
   useEffect(() => {
@@ -41,8 +40,10 @@ const apiBaseUrl = 'https://localhost:8443';
 
 const handleLogout = async () => {
   try {
-    // Get current FCM token and remove it
-    const currentToken = await getToken(messaging, { vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY });
+    // Get current FCM token and remove it (only when push notifications are configured and allowed)
+    const currentToken = messaging && Notification.permission === 'granted'
+      ? await getToken(messaging, { vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY })
+      : null;
     if (currentToken) {
       await axiosInstance.delete(`/user/fcm-token?token=${encodeURIComponent(currentToken)}`);
     }
@@ -72,7 +73,7 @@ const getInitials = (fullName) =>
 
   // Construct full URL – only prepend backend if it's an uploaded image (starts with /uploads/)
   const fullProfileImageUrl = profileImageUrl
-    ? (profileImageUrl.startsWith('/uploads/') ? `${apiBaseUrl}${profileImageUrl}` : profileImageUrl)
+    ? (profileImageUrl.startsWith("/uploads/") ? backendUrl(profileImageUrl) : profileImageUrl)
     : null;
 
   return (

@@ -379,7 +379,7 @@ const [loadingLiveStats, setLoadingLiveStats] = useState(true);
             <p className="text-center text-muted">No feedback yet. Be the first to share your experience!</p>
           ) : (
             <Carousel indicators={false} controls={true} interval={5000} className="testimonial-carousel">
-              {recentFeedback.map((fb, idx) => (
+              {recentFeedback.map((fb) => (
                 <Carousel.Item key={fb.tokenId}>
                   <div className="testimonial-card text-center p-5">
                     <div className="testimonial-stars mb-3">

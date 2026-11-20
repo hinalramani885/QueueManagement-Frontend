@@ -7,6 +7,7 @@ import { fetchServicesByPlace } from "../redux/serviceSlice";
 import BestTimeToJoin from '../components/BestTimeToJoin';
 import { Card, Button, Spinner, Alert, Row, Col, Badge } from "react-bootstrap";
 import './PlaceDetail.css';
+import { API_BASE_URL } from '../config';
 import {
   FaMapMarkerAlt,
   FaStar,
@@ -38,7 +39,7 @@ const PlaceDetail = () => {
     error: servicesError,
   } = useSelector((state) => state.services);
   const { token, role, id: userId } = useSelector((state) => state.auth);
-  const [joiningQueue, setJoiningQueue] = useState(false);
+  const [joiningQueue] = useState(false);
   const [queues, setQueues] = useState([]);
 
   const services = servicesByPlace[id] || [];
@@ -54,7 +55,7 @@ const PlaceDetail = () => {
     const fetchQueues = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:8443/api/queues/by-place/${id}`
+          `${API_BASE_URL}/queues/by-place/${id}`
         );
         setQueues(response.data);
       } catch (error) {

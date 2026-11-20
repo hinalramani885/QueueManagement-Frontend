@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
     Container, Card, Button, Spinner, Alert, Form,
@@ -16,7 +16,6 @@ import './NotificationPreferences.css';
 
 const NotificationPreferences = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const { token, id: userId } = useSelector((state) => state.auth);
 
     const [preferences, setPreferences] = useState([]);
@@ -79,7 +78,7 @@ const NotificationPreferences = () => {
             const existingQueueIds = new Set(preferences.map(p => p.queueId));
             const available = enrichedQueues.filter(q => !existingQueueIds.has(q.id));
             setUserQueues(available);
-        } catch (err) {
+        } catch {
             toast.error('Failed to load your queues');
         } finally {
             setLoadingQueues(false);
@@ -126,7 +125,7 @@ const NotificationPreferences = () => {
             await notificationPreferenceService.deletePreference(deleteQueueId);
             setPreferences(prefs => prefs.filter(p => p.queueId !== deleteQueueId));
             toast.success('Preference deleted');
-        } catch (err) {
+        } catch {
             toast.error('Failed to delete preference');
         } finally {
             setShowDeleteModal(false);
@@ -151,7 +150,7 @@ const NotificationPreferences = () => {
             );
             setShowEditModal(false);
             toast.success('Preference updated');
-        } catch (err) {
+        } catch {
             toast.error('Failed to update preference');
         } finally {
             setSaving(false);
@@ -178,7 +177,7 @@ const NotificationPreferences = () => {
             setPreferences(prev => [...prev, newPref]);
             setShowAddModal(false);
             toast.success('Preference added');
-        } catch (err) {
+        } catch {
             toast.error('Failed to add preference');
         } finally {
             setSaving(false);

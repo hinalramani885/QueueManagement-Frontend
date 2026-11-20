@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -91,7 +91,7 @@ const UserDashboard = () => {
     }, [searchTerm, places, services]);
 
     // Helper to transform raw queues data into active queues only
-    const getActiveUserQueues = (queuesData) => {
+    const getActiveUserQueues = useCallback((queuesData) => {
         if (!Array.isArray(queuesData)) return [];
 
         return queuesData
@@ -116,7 +116,7 @@ const UserDashboard = () => {
                 };
             })
             .filter(queue => queue !== null); // remove null entries
-    };
+    }, [userId]);
 
     useEffect(() => {
         const fetchUserQueues = async () => {
@@ -139,13 +139,13 @@ const UserDashboard = () => {
             fetchUserQueues();
 
             const interval = setInterval(() => {
-                setRefreshCount(prev => prev + 1);
                 fetchUserQueues();
             }, 15000);
 
             return () => clearInterval(interval);
         }
-    }, [userId, token, refreshCount]);
+        // refreshCount: bumped by the "Refresh" button to refetch immediately
+    }, [userId, token, refreshCount, getActiveUserQueues]);
 
     const handleLogout = () => {
         dispatch(logout());
@@ -176,7 +176,7 @@ const UserDashboard = () => {
             const response = await axiosInstance.get(`/queues/by-user/${userId}`);
             const activeQueues = getActiveUserQueues(response.data);
             setUserQueues(activeQueues);
-        } catch (error) {
+        } catch {
             toast.error('Failed to leave queue.');
         } finally {
             setCancelling(null);

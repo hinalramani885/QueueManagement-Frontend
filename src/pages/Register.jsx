@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUser, faEnvelope, faPhone, faLock, faKey,
-  faBell, faGlobe, faPalette, faEye, faEyeSlash
+  faBell, faPalette, faEye, faEyeSlash
 } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './Register.css';

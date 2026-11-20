@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -38,15 +38,8 @@ const ProviderQueueManagement = () => {
   const [managedPlaces, setManagedPlaces] = useState([]);
   const [managedServices, setManagedServices] = useState([]);
 
-  useEffect(() => {
-    if (providerId && token) {
-      fetchQueues();
-      fetchManagedPlaces();
-      fetchManagedServices();
-    }
-  }, [providerId, token]);
 
-  const fetchManagedPlaces = async () => {
+  const fetchManagedPlaces = useCallback(async () => {
     try {
       const response = await axiosInstance.get('/providers/my-places');
       if (Array.isArray(response.data)) {
@@ -61,9 +54,9 @@ const ProviderQueueManagement = () => {
       setManagedPlaces([]);
       toast.error("Failed to fetch managed places.");
     }
-  };
+  }, []);
 
-  const fetchManagedServices = async () => {
+  const fetchManagedServices = useCallback(async () => {
     try {
       const response = await axiosInstance.get('/providers/my-services');
       if (Array.isArray(response.data)) {
@@ -78,9 +71,9 @@ const ProviderQueueManagement = () => {
       setManagedServices([]);
       toast.error("Failed to fetch managed services.");
     }
-  };
+  }, []);
 
-  const fetchQueues = async () => {
+  const fetchQueues = useCallback(async () => {
     try {
       const response = await axiosInstance.get('/queues/by-provider');
 
@@ -108,7 +101,15 @@ const ProviderQueueManagement = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [providerId]);
+
+  useEffect(() => {
+    if (providerId && token) {
+      fetchQueues();
+      fetchManagedPlaces();
+      fetchManagedServices();
+    }
+  }, [providerId, token, fetchQueues, fetchManagedPlaces, fetchManagedServices]);
 
   const handleCreateQueue = async (e) => {
     e.preventDefault();

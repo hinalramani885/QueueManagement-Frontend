@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Alert, Button, Spinner } from 'react-bootstrap';
 import { FaClock, FaInfoCircle, FaSync } from 'react-icons/fa';
@@ -11,8 +11,16 @@ const UserQueueRestriction = ({ onRestrictionCheck, queueId }) => {
   const [error, setError] = useState(null);
   const { id: userId } = useSelector((state) => state.auth);
 
-  const checkRestriction = async () => {
+  // Parents usually pass an inline callback; keep the latest one in a ref so it does not
+  // retrigger the fetch/interval effect on every parent render.
+  const onRestrictionCheckRef = useRef(onRestrictionCheck);
+  useEffect(() => {
+    onRestrictionCheckRef.current = onRestrictionCheck;
+  }, [onRestrictionCheck]);
+
+  const checkRestriction = useCallback(async () => {
     if (!userId) return;
+    const onRestrictionCheck = onRestrictionCheckRef.current;
     
     setLoading(true);
     setError(null);
@@ -33,15 +41,16 @@ const UserQueueRestriction = ({ onRestrictionCheck, queueId }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
 
   useEffect(() => {
     checkRestriction();
-    
+
     // Set up periodic refresh every 30 seconds
     const interval = setInterval(checkRestriction, 30000);
     return () => clearInterval(interval);
-  }, [userId, queueId]);
+    // queueId: re-check when the user navigates to another queue
+  }, [checkRestriction, queueId]);
 
   if (!userId) return null;
 
@@ -78,7 +87,7 @@ const UserQueueRestriction = ({ onRestrictionCheck, queueId }) => {
                     You can join another queue after: {canJoinAfter}
                 </small>
             );
-        } catch (e) {
+        } catch {
             console.error("Invalid date format for canJoinAfter", restriction.canJoinAfter);
         }
     }

@@ -66,7 +66,7 @@ export const fetchPlacesByAdmin = createAsyncThunk(
 
 export const fetchMyPlaces = createAsyncThunk(
   'places/fetchMy',
-  async (_, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get('/places/admin/my-places');
       return response.data;

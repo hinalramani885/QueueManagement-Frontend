@@ -480,7 +480,6 @@ const ProviderDashboard = () => {
                                 <>
                                     <QueueList
                                         queue={localQueueData}
-                                        onServeNext={handleServeNext}
                                         onViewUserDetails={handleViewUserDetails}
                                     />
                                     <CompletedTokensList completedTokens={completedTokens} />

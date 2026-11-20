@@ -67,7 +67,7 @@ const AdminDashboard = () => {
       setPayments(paymentsResponse.data);
       setProviders(providersResponse.data);
       setQueues(queuesResponse.data);
-    } catch (err) {
+    } catch {
       setError('Failed to load dashboard data');
       toast.error('Failed to load dashboard data');
     } finally {
@@ -81,7 +81,7 @@ const AdminDashboard = () => {
     try {
       const response = await axiosInstance.get('/admin/queues/enhanced');
       setQueues(response.data);
-    } catch (err) {
+    } catch {
       toast.error('Failed to refresh queues');
     } finally {
       setQueuesLoading(false);
@@ -122,7 +122,7 @@ const AdminDashboard = () => {
       await axiosInstance.put(endpoint);
       toast.success(`Queue ${currentStatus ? 'paused' : 'resumed'} successfully!`);
       fetchQueuesData(); // refresh only queues
-    } catch (error) {
+    } catch {
       toast.error('Failed to update queue status');
     }
   };
@@ -142,7 +142,7 @@ const AdminDashboard = () => {
       link.remove();
       window.URL.revokeObjectURL(url);
       toast.success('Report downloaded successfully!');
-    } catch (error) {
+    } catch {
       toast.error('Failed to download report');
     }
   };

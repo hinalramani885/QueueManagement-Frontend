@@ -35,7 +35,7 @@ const VerifyOtp = () => {
       toast.success('OTP resent!');
       setOtp(['', '', '', '', '', '']);
       setTimer(60);
-    } catch (err) {
+    } catch {
       toast.error('Resend failed');
     } finally {
       setResending(false);

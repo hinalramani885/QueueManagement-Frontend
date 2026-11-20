@@ -4,7 +4,7 @@ import { searchService } from '../services/searchService';
 // Async thunks
 export const performSearch = createAsyncThunk(
   'search/performSearch',
-  async ({ filters, page = 0, size = 20, sortBy, sortDirection, type = 'all' }, { rejectWithValue, getState }) => {
+  async ({ filters, page = 0, size = 20, sortBy, sortDirection, type = 'all' }, { rejectWithValue }) => {
     try {
       const response = await searchService.comprehensiveSearch(filters, page, size, sortBy, sortDirection);
       return { ...response, type };

@@ -6,6 +6,7 @@ import { logout, updatePreferences } from '../redux/authSlice'; // import update
 import { authService } from '../services/authService';
 import { toast } from 'react-toastify';
 import './UserProfile.css';
+import { backendUrl } from '../config';
 
 const UserProfile = () => {
     const dispatch = useDispatch();
@@ -32,7 +33,6 @@ const UserProfile = () => {
         favoritePlaceIds: []
     });
 
-     const apiBaseUrl =  'https://localhost:8443';
 // Helper to get initials
     const getInitials = (fullName) =>
         fullName
@@ -52,7 +52,7 @@ const UserProfile = () => {
     // Construct full image URL – only prepend backend base if it's an uploaded image (starts with /uploads/)
     const fullImageUrl = profileImageUrl
         ? (profileImageUrl.startsWith('/uploads/')
-            ? `${apiBaseUrl}${profileImageUrl}`
+            ? backendUrl(profileImageUrl)
             : profileImageUrl)
         : null;
 
@@ -181,7 +181,7 @@ const UserProfile = () => {
         try {
             dispatch(updatePreferences(preferences));
             toast.success('Preferences saved!');
-        } catch (error) {
+        } catch {
             toast.error('Failed to save preferences.');
         } finally {
             setIsSubmitting(false);

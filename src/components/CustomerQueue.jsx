@@ -54,7 +54,6 @@ const CustomerQueue = () => {
     visibleToAdmin: true
   });
   const [userToken, setUserToken] = useState(null);
-  const [isTokenExpired, setIsTokenExpired] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const [canJoinQueue, setCanJoinQueue] = useState(true);
   const [showExpiredMessage, setShowExpiredMessage] = useState(false);
@@ -89,15 +88,12 @@ const [userPosition, setUserPosition] = useState(null);
 
           if (userActiveToken) {
             setUserToken(userActiveToken);
-            setIsTokenExpired(false);
             setShowExpiredMessage(false);
           } else if (completedToken) {
             setUserToken(completedToken);
-            setIsTokenExpired(true);
             setShowExpiredMessage(false);
           } else {
             setUserToken(null);
-            setIsTokenExpired(false);
             setShowExpiredMessage(false);
           }
         } else {
@@ -119,7 +115,7 @@ const [userPosition, setUserPosition] = useState(null);
 
   useEffect(() => {
     const handleEmergencyApproval = (event) => {
-      const { tokenId, approved, message } = event.detail;
+      const { approved, message } = event.detail;
       setNotification({
         title: approved ? 'Emergency Approved' : 'Emergency Rejected',
         message: message || (approved ? 'Your emergency token has been approved!' : 'Your emergency request was rejected.'),
@@ -142,7 +138,6 @@ const [userPosition, setUserPosition] = useState(null);
         });
         setShowNotification(true);
         setUserToken(null);
-        setIsTokenExpired(false);
         setShowExpiredMessage(false);
       }
     };
@@ -344,7 +339,6 @@ const [userPosition, setUserPosition] = useState(null);
   const handleExpiredMessageDismissed = () => {
     setShowExpiredMessage(false);
     setUserToken(null);
-    setIsTokenExpired(false);
   };
 
   if (loading) {

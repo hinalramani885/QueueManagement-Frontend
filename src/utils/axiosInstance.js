@@ -1,8 +1,9 @@
 import axios from 'axios';
 import store from '../store/store';
+import { API_BASE_URL } from '../config';
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://localhost:8443/api',
+  baseURL: API_BASE_URL,
 });
 
 // Request interceptor (unchanged)
@@ -48,6 +49,8 @@ axiosInstance.interceptors.response.use(
         message: errorMessage,
         path: data?.path,
         timestamp: data?.timestamp,
+        // Keep the original response so callers using error.response.data.message still work
+        response: error.response,
       };
       return Promise.reject(normalizedError);
     }

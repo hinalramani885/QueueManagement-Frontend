@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Modal, Button, Spinner, Alert } from 'react-bootstrap';
 import { FaUser, FaInfoCircle, FaEye, FaEyeSlash } from 'react-icons/fa';
 import axiosInstance from '../utils/axiosInstance';
@@ -10,13 +10,7 @@ const UserDetailsModal = ({ show, onHide, queueId, tokenId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (show && tokenId) {
-      fetchUserDetails();
-    }
-  }, [show, tokenId]);
-
-  const fetchUserDetails = async () => {
+  const fetchUserDetails = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -30,7 +24,13 @@ const UserDetailsModal = ({ show, onHide, queueId, tokenId }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [queueId, tokenId]);
+
+  useEffect(() => {
+    if (show && tokenId) {
+      fetchUserDetails();
+    }
+  }, [show, tokenId, fetchUserDetails]);
 
   return (
    <Modal show={show} onHide={onHide} size="lg" className="user-details-modal">
