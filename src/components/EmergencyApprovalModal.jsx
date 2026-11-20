@@ -1,6 +1,6 @@
 // src/components/EmergencyApprovalModal.jsx
 import './EmergencyApprovalModal.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Modal, Button, ListGroup, Badge, Alert, Spinner, Form } from 'react-bootstrap';
 import { FaAmbulance, FaCheck, FaTimes, FaClock } from 'react-icons/fa';
 import axiosInstance from '../utils/axiosInstance';
@@ -15,7 +15,7 @@ const EmergencyApprovalModal = ({ show, onHide, queueId }) => {
     const [showReasonInput, setShowReasonInput] = useState(false);
     const [rejectingTokenId, setRejectingTokenId] = useState(null);
 
-    const fetchPendingTokens = async () => {
+    const fetchPendingTokens = useCallback(async () => {
         if (!queueId) return;
         setLoading(true);
         try {
@@ -27,7 +27,7 @@ const EmergencyApprovalModal = ({ show, onHide, queueId }) => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [queueId]);
 
     const handleApprove = async (tokenId) => {
         setApproving(prev => ({ ...prev, [tokenId]: true }));
@@ -75,7 +75,7 @@ const EmergencyApprovalModal = ({ show, onHide, queueId }) => {
         if (show) {
             fetchPendingTokens();
         }
-    }, [show, queueId]);
+    }, [show, fetchPendingTokens]);
 
     return (
     <Modal show={show} onHide={onHide} size="lg" className="emergency-modal">

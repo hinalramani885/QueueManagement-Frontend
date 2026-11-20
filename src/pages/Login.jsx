@@ -78,7 +78,7 @@ const Login = () => {
               toast.success('You have joined the queue!');
               navigate(`/customer/queue/${queueId}`);
               return;
-            } catch (err) {
+            } catch {
               toast.error('Failed to join queue from QR');
               // fall through
             }

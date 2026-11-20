@@ -27,8 +27,9 @@ const PlaceRatingSummary = ({ placeId }) => {
           setRatings(response.data);
           setError(null);
         } else {
+          // Not an error: the "no ratings yet" card is shown below
           setRatings(null);
-          setError("No ratings available yet.");
+          setError(null);
         }
 
       } catch (err) {
@@ -78,7 +79,19 @@ const PlaceRatingSummary = ({ placeId }) => {
     return <div className="prs-loading">Loading ratings...</div>;
   }
 
-  // This is the new conditional render for no ratings
+  if (error) {
+    return (
+      <Card className="prs-no-rating-card">
+        <Card.Body className="text-center">
+          <FaInfoCircle className="prs-info-icon" />
+          <h5 className="mt-3 prs-no-rating-text">{error}</h5>
+          <p className="text-muted">Please try again later.</p>
+        </Card.Body>
+      </Card>
+    );
+  }
+
+  // No ratings yet
   if (!ratings) {
     return (
       <Card className="prs-no-rating-card">

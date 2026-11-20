@@ -22,7 +22,7 @@ const ExportHistory = ({ show, onHide }) => {
         try {
             const response = await axiosInstance.get('/export/exports');
             setExports(response.data);
-        } catch (error) {
+        } catch {
             toast.error('Failed to load export history');
         } finally {
             setLoading(false);
@@ -52,7 +52,7 @@ const ExportHistory = ({ show, onHide }) => {
             link.click();
             link.remove();
             window.URL.revokeObjectURL(url);
-        } catch (error) {
+        } catch {
             toast.error('Failed to download export');
         } finally {
             setDownloading(null);

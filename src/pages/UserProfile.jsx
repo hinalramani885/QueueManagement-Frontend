@@ -181,7 +181,7 @@ const UserProfile = () => {
         try {
             dispatch(updatePreferences(preferences));
             toast.success('Preferences saved!');
-        } catch (error) {
+        } catch {
             toast.error('Failed to save preferences.');
         } finally {
             setIsSubmitting(false);

@@ -39,7 +39,7 @@ const PlaceDetail = () => {
     error: servicesError,
   } = useSelector((state) => state.services);
   const { token, role, id: userId } = useSelector((state) => state.auth);
-  const [joiningQueue, setJoiningQueue] = useState(false);
+  const [joiningQueue] = useState(false);
   const [queues, setQueues] = useState([]);
 
   const services = servicesByPlace[id] || [];

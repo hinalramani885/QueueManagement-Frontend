@@ -13,7 +13,7 @@ const PlaceList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { paginated, loading, error } = useSelector((state) => state.places);
-  const { token, role, id: userId } = useSelector((state) => state.auth);
+  const { role, id: userId } = useSelector((state) => state.auth);
   const { items, currentPage, totalPages, loading: paginatedLoading } = paginated;
 
   useEffect(() => {

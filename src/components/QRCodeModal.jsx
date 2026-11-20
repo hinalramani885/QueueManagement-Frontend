@@ -1,5 +1,5 @@
 // src/components/QRCodeModal.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Modal, Button, Spinner, Alert } from 'react-bootstrap';
 import { FaQrcode, FaDownload } from 'react-icons/fa';
 import axiosInstance from '../utils/axiosInstance';
@@ -10,13 +10,7 @@ const QRCodeModal = ({ show, onHide, queueId, queueName }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (show && queueId) {
-      fetchQRCode();
-    }
-  }, [show, queueId]);
-
-  const fetchQRCode = async () => {
+  const fetchQRCode = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -31,7 +25,20 @@ const QRCodeModal = ({ show, onHide, queueId, queueName }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [queueId]);
+
+  useEffect(() => {
+    if (show && queueId) {
+      fetchQRCode();
+    }
+  }, [show, queueId, fetchQRCode]);
+
+  // Release the blob URL of the previous QR image to avoid leaking memory
+  useEffect(() => {
+    return () => {
+      if (qrImage) URL.revokeObjectURL(qrImage);
+    };
+  }, [qrImage]);
 
   const handleDownload = () => {
     if (!qrImage) return;

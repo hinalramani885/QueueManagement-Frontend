@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, Spinner, Alert, Badge, Button, Row, Col, Form } from 'react-bootstrap';
 import { FaUser, FaClock, FaComment, FaFilter, FaStar, FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import RatingDisplay from './RatingDisplay';
@@ -18,15 +18,7 @@ const FeedbackHistory = ({ placeId, providerId }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [visibleCount, setVisibleCount] = useState(5);
 
-  useEffect(() => {
-    fetchFeedbacks();
-  }, [placeId, providerId]);
-
-  useEffect(() => {
-    applyFilters();
-  }, [feedbacks, filters]);
-
-  const fetchFeedbacks = async () => {
+  const fetchFeedbacks = useCallback(async () => {
     try {
       setLoading(true);
       let url = '';
@@ -45,9 +37,9 @@ const FeedbackHistory = ({ placeId, providerId }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [placeId, providerId]);
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let result = [...feedbacks];
 
     if (filters.rating) {
@@ -70,7 +62,15 @@ const FeedbackHistory = ({ placeId, providerId }) => {
 
     setFilteredFeedbacks(result);
     setVisibleCount(3);
-  };
+  }, [feedbacks, filters]);
+
+  useEffect(() => {
+    fetchFeedbacks();
+  }, [fetchFeedbacks]);
+
+  useEffect(() => {
+    applyFilters();
+  }, [applyFilters]);
 
   const handleFilterChange = (filterName, value) => {
     setFilters(prev => ({

@@ -25,7 +25,7 @@ const FavoritesPage = () => {
       toast.success('Place removed from favorites!');
       // Refetch favorites to update the list
       dispatch(fetchFavoritePlacesWithDetails());
-    } catch (error) {
+    } catch {
       toast.error('Failed to remove favorite place.');
     }
   };

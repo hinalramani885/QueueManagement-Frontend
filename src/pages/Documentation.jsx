@@ -1,21 +1,21 @@
 // Documentation.jsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, ListGroup, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaCopy, FaCheck } from 'react-icons/fa';
 import './Documentation.css';
 
+// All section IDs (module-level constant so effects don't need it as a dependency)
+const sectionIds = [
+    'introduction', 'getting-started', 'authentication', 'api-reference',
+    'websocket', 'notification-preferences', 'feedback', 'payments',
+    'admin-provider', 'export', 'error-handling', 'rate-limiting',
+    'deployment', 'troubleshooting', 'faq'
+];
+
 const Documentation = () => {
     const [activeId, setActiveId] = useState('');
     const [copied, setCopied] = useState(null);
-
-    // All section IDs
-    const sectionIds = [
-        'introduction', 'getting-started', 'authentication', 'api-reference',
-        'websocket', 'notification-preferences', 'feedback', 'payments',
-        'admin-provider', 'export', 'error-handling', 'rate-limiting',
-        'deployment', 'troubleshooting', 'faq'
-    ];
 
     // Scroll spy: highlight active TOC item
     useEffect(() => {

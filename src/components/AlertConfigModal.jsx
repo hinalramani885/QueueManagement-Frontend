@@ -63,7 +63,7 @@ const AlertConfigModal = ({ show, onHide, onConfigChanged }) => {
       toast.success('Alert configuration saved');
       onConfigChanged();
       onHide();
-    } catch (err) {
+    } catch {
       setError('Failed to save configuration');
     } finally {
       setLoading(false);
@@ -78,7 +78,7 @@ const AlertConfigModal = ({ show, onHide, onConfigChanged }) => {
       toast.success('Alert configuration deleted');
       onConfigChanged();
       onHide();
-    } catch (err) {
+    } catch {
       setError('Failed to delete configuration');
     } finally {
       setLoading(false);
@@ -92,7 +92,7 @@ const AlertConfigModal = ({ show, onHide, onConfigChanged }) => {
       });
       setEnabled(!enabled);
       toast.success(`Alerts ${!enabled ? 'enabled' : 'disabled'}`);
-    } catch (err) {
+    } catch {
       toast.error('Failed to toggle alerts');
     }
   };

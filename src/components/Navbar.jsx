@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, NavDropdown, Badge, Collapse } from 'react-bootstrap';
@@ -22,7 +22,6 @@ const Navbar = () => {
 
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const logoRef = useRef(null);
   const [showScanner, setShowScanner] = useState(false);
 
   const isAuthenticated = !!token;

@@ -53,6 +53,11 @@ const AdvancedSearch = () => {
   });
   const [showFilters, setShowFilters] = useState(false);
   const searchTimeoutRef = useRef(null);
+  // Latest filters for the debounced search (which only re-runs when the query text changes)
+  const localFiltersRef = useRef(localFilters);
+  useEffect(() => {
+    localFiltersRef.current = localFilters;
+  });
   const isInitialMount = useRef(true);
 
   useEffect(() => {
@@ -76,9 +81,10 @@ const AdvancedSearch = () => {
 
     if (localFilters.query !== filters?.query) {
       searchTimeoutRef.current = setTimeout(() => {
-        dispatch(setFilters(localFilters));
+        const latestFilters = localFiltersRef.current;
+        dispatch(setFilters(latestFilters));
         dispatch(performSearch({
-          filters: localFilters,
+          filters: latestFilters,
           page: 0,
           size: 20,
           sortBy,

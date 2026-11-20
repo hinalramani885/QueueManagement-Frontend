@@ -42,21 +42,22 @@ const ResetPasswordWithToken = () => {
       setChecking(false);
       return;
     }
+
+    const validateToken = async () => {
+      try {
+        await axiosInstance.post('/password-reset-token/validate', null, {
+          params: { token }
+        });
+        setTokenValid(true);
+      } catch {
+        setTokenValid(false);
+      } finally {
+        setChecking(false);
+      }
+    };
+
     validateToken();
   }, [token]);
-
-  const validateToken = async () => {
-    try {
-      await axiosInstance.post('/password-reset-token/validate', null, {
-        params: { token }
-      });
-      setTokenValid(true);
-    } catch (err) {
-      setTokenValid(false);
-    } finally {
-      setChecking(false);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
