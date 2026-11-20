@@ -100,6 +100,7 @@ const PricingPage = () => {
               params: {
                 orderId: orderId,
                 paymentId: response.razorpay_payment_id,
+                signature: response.razorpay_signature,
                 email: formik.values.email,
                 tokenType,
               }

@@ -108,6 +108,7 @@ const ProviderPricingPage = () => {
               params: {
                 orderId,
                 paymentId: response.razorpay_payment_id,
+                signature: response.razorpay_signature,
                 providerEmail,
                 tokenType,
                 adminId,

@@ -276,7 +276,7 @@ Content-Type: application/json
 import SockJS from 'sockjs-client';
 
 const client = new Client({
-  webSocketFactory: () => new SockJS('https://localhost:8443/ws'),
+  webSocketFactory: () => new SockJS('/ws'),
   connectHeaders: { Authorization: \`Bearer \${token}\` },
   onConnect: () => {
     console.log('Connected');
@@ -375,12 +375,12 @@ client.activate();`}
                                 />
                                 <h5>Confirm Payment (Admin)</h5>
                                 <CodeBlock
-                                    code={`POST /api/payment/confirm?orderId={orderId}&paymentId={paymentId}&email=admin@example.com&tokenType=1_MONTH`}
+                                    code={`POST /api/payment/confirm?orderId={orderId}&paymentId={paymentId}&signature={razorpay_signature}&email=admin@example.com&tokenType=1_MONTH`}
                                     index={7}
                                 />
                                 <h5>Confirm Provider Token (Admin)</h5>
                                 <CodeBlock
-                                    code={`POST /api/payment/confirm-provider?orderId={orderId}&paymentId={paymentId}&providerEmail=provider@example.com&tokenType=1_MONTH`}
+                                    code={`POST /api/payment/confirm-provider?orderId={orderId}&paymentId={paymentId}&signature={razorpay_signature}&providerEmail=provider@example.com&tokenType=1_MONTH`}
                                     index={8}
                                 />
                                 <p>Tokens are one‑time use and expire after the purchased period.</p>

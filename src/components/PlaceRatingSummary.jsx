@@ -3,6 +3,7 @@ import { Card, Row, Col } from 'react-bootstrap';
 import { FaStar, FaStarHalfAlt, FaRegStar, FaInfoCircle } from 'react-icons/fa';
 import axios from 'axios';
 import './PlaceRatingSummary.css';
+import { API_BASE_URL } from '../config';
 
 const PlaceRatingSummary = ({ placeId }) => {
   const [ratings, setRatings] = useState(null);
@@ -13,7 +14,7 @@ const PlaceRatingSummary = ({ placeId }) => {
     const fetchRatings = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://localhost:8443/api/feedback/place/${placeId}/detailed-ratings`);
+        const response = await axios.get(`${API_BASE_URL}/feedback/place/${placeId}/detailed-ratings`);
 
         // Check if the ratings data is empty or all ratings are 0
         const hasRatings = response.data &&

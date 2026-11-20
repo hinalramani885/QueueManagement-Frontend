@@ -4,7 +4,8 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist'] },
+  // public/firebase-messaging-sw.js is generated (scripts/generate-sw.cjs) and runs in a service-worker scope
+  { ignores: ['dist', 'public/firebase-messaging-sw.js'] },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
