@@ -1,0 +1,208 @@
+/*
+ * Mobile layer: makes every page fit Android phones (320px and up) and feel like an app.
+ * Loaded after Bootstrap and animations.css (see main.jsx).
+ */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+/* Leaflet sets its own sizes on these; only cap the map container */
+.leaflet-container img,
+.leaflet-container svg { max-width: none; }
+
+/* Long words / e-mails / tokens never push the page wider than the screen */
+p, h1, h2, h3, h4, h5, h6, li, td, th, dd, label, .card-title, .card-text {
+  overflow-wrap: anywhere;
+}
+
+/* Safe areas (notches, gesture bars) */
+.ql-navbar {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* ---------- Phones & small tablets ---------- */
+@media (max-width: 991.98px) {
+  /* Comfortable touch targets */
+  .btn,
+  .form-control,
+  .form-select,
+  .nav-link,
+  .dropdown-item,
+  .page-link {
+    min-height: 44px;
+  }
+
+  .btn-sm { min-height: 36px; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-link { min-height: 0; }
+
+  /* Tabs and pills scroll sideways instead of wrapping into several rows */
+  .nav-tabs,
+  .nav-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    gap: 0.4rem;
+    border-bottom: 0;
+    padding-bottom: 4px;
+  }
+
+  .nav-tabs::-webkit-scrollbar,
+  .nav-pills::-webkit-scrollbar { display: none; }
+
+  .nav-tabs .nav-item,
+  .nav-pills .nav-item { flex: 0 0 auto; scroll-snap-align: start; }
+
+  .nav-tabs .nav-link {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 0.45rem 1rem;
+    color: var(--text-secondary);
+    background: var(--card-bg);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .nav-tabs .nav-link.active {
+    color: #fff;
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--navbar-bg-start), var(--navbar-bg-end));
+    box-shadow: 0 6px 16px -8px rgba(79, 70, 229, 0.8);
+  }
+
+  /* Tables scroll inside their own box */
+  .table-responsive,
+  .card-body > .table,
+  .tab-content .table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table { font-size: 0.875rem; }
+  .table th, .table td { white-space: nowrap; }
+
+  /* Pagination fits */
+  .pagination { flex-wrap: wrap; justify-content: center; }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 767.98px) {
+  .container,
+  .container-fluid,
+  .container-sm,
+  .container-md {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  /* Fluid headings */
+  h1, .h1 { font-size: clamp(1.6rem, 6.5vw, 2.1rem); }
+  h2, .h2 { font-size: clamp(1.4rem, 5.6vw, 1.8rem); }
+  h3, .h3 { font-size: clamp(1.2rem, 4.8vw, 1.5rem); }
+  h4, .h4 { font-size: clamp(1.05rem, 4.2vw, 1.3rem); }
+  .display-1, .display-2, .display-3, .display-4 { font-size: clamp(2rem, 9vw, 2.8rem); }
+
+  /* Large vertical paddings from desktop layouts waste space on phones */
+  .py-5 { padding-top: 1.75rem !important; padding-bottom: 1.75rem !important; }
+  .my-5 { margin-top: 1.75rem !important; margin-bottom: 1.75rem !important; }
+  .mt-5 { margin-top: 1.75rem !important; }
+  .mb-5 { margin-bottom: 1.75rem !important; }
+  .p-5 { padding: 1.5rem !important; }
+
+  .card-body { padding: 1rem; }
+  .card-header, .card-footer { padding: 0.75rem 1rem; }
+
+  /* 16px inputs stop mobile browsers zooming in on focus */
+  .form-control,
+  .form-select,
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Button groups and toolbars wrap instead of overflowing */
+  .btn-group,
+  .btn-toolbar { flex-wrap: wrap; }
+
+  /* ---------- Modals become bottom sheets ---------- */
+  .modal-dialog:not(.modal-fullscreen) {
+    display: flex;
+    align-items: flex-end;
+    min-height: 100%;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .modal-dialog:not(.modal-fullscreen) .modal-content {
+    width: 100%;
+    border-radius: 24px 24px 0 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .modal-dialog:not(.modal-fullscreen) .modal-content::before {
+    content: '';
+    display: block;
+    width: 42px;
+    height: 5px;
+    margin: 10px auto 0;
+    border-radius: 999px;
+    background: var(--border-color);
+  }
+
+  .modal.fade .modal-dialog:not(.modal-fullscreen) {
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .modal.show .modal-dialog:not(.modal-fullscreen) { transform: none; }
+
+  .modal-header { padding: 0.75rem 1rem; }
+  .modal-body { padding: 1rem; }
+  .modal-footer { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+  .modal-footer > .btn { flex: 1 1 auto; margin: 0; }
+
+  /* SweetAlert dialogs fit small screens */
+  .swal2-popup { width: calc(100% - 28px) !important; padding: 1.25rem !important; border-radius: 20px !important; }
+  .swal2-title { font-size: 1.3rem !important; }
+
+  /* Toasts span the width on phones */
+  .Toastify__toast-container { width: calc(100% - 20px); left: 10px; right: 10px; }
+}
+
+/* ---------- Very small phones (320–375px) ---------- */
+@media (max-width: 375px) {
+  .container,
+  .container-fluid { padding-left: 12px; padding-right: 12px; } /* not below 12px: .row gutters pull out 12px */
+  .card-body { padding: 0.85rem; }
+  .btn { padding-left: 0.75rem; padding-right: 0.75rem; }
+}

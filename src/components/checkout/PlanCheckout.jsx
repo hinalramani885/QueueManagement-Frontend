@@ -95,11 +95,9 @@ const PlanCheckout = ({
       method: Yup.string().oneOf(METHODS.map((m) => m.id)).required(),
       upiId: Yup.string()
         .trim()
-        .when('method', {
-          is: 'upi',
-          then: (schema) => schema.required('UPI ID is required').matches(UPI_REGEX, 'Format: yourname@bank'),
-          otherwise: (schema) => schema.notRequired(),
-        }),
+        // Optional: saved with the payment record. Razorpay no longer accepts a typed UPI ID
+        // (NPCI retired "UPI Collect" on 28 Feb 2026); the payer scans a QR code or uses a UPI app.
+        .test('upi-format', 'Format: yourname@bank', (value) => !value || UPI_REGEX.test(value.trim())),
     }),
     onSubmit: () => {},
   });
@@ -180,12 +178,13 @@ const PlanCheckout = ({
         name: checkoutName,
         description: `${checkoutDescription} – ${plan.name}`,
         order_id: orderId,
+        // Documented prefill keys are name, email, contact and method ("method" only works when
+        // contact and email are also prefilled). Razorpay has no prefill for a UPI ID.
         prefill: {
           name,
           email,
-          contact: phone,
+          contact: phone.startsWith('+') ? phone : `+91${phone}`,
           method: values.method,
-          ...(upiId ? { vpa: upiId } : {}),
         },
         notes: { plan: plan.tokenType, ...(upiId ? { upiId } : {}) },
         // Show the method chosen on our page first; the other methods stay available below it
@@ -358,7 +357,19 @@ const PlanCheckout = ({
                     transition={{ duration: 0.3 }}
                   >
                     <div className="pc-upi">
-                      <label className="pc-label" htmlFor="pc-upi">UPI ID</label>
+                      <div className="pc-upi-how">
+                        <i className="bi bi-qr-code-scan" />
+                        <div>
+                          <strong>How UPI payment works</strong>
+                          <span>
+                            On a <b>phone</b>, Razorpay opens your UPI app (GPay, PhonePe, Paytm…) directly.
+                            On a <b>computer</b>, it shows a QR code – scan it with any UPI app and approve.
+                          </span>
+                        </div>
+                      </div>
+                      <label className="pc-label" htmlFor="pc-upi">
+                        Your UPI ID <span className="pc-optional">(optional – saved with your payment receipt)</span>
+                      </label>
                       <div className={`pc-input ${fieldInvalid('upiId') ? 'is-invalid' : ''} ${upiValid ? 'is-valid' : ''}`}>
                         <i className="bi bi-at" />
                         <input id="pc-upi" name="upiId" autoComplete="off" autoCapitalize="none" spellCheck="false"
@@ -374,8 +385,12 @@ const PlanCheckout = ({
                       </div>
                       {IS_TEST_KEY && (
                         <div className="pc-test-hint">
-                          <i className="bi bi-info-circle" /> Test mode: use <code>success@razorpay</code> for a successful
-                          payment or <code>failure@razorpay</code> to simulate a failure.
+                          <i className="bi bi-info-circle" /> <b>Test mode:</b> UPI QR codes can&apos;t be paid with a real
+                          app. To test, choose <b>Net Banking</b> in the Razorpay window, pick any bank and click
+                          <i> Success</i>, or use a{' '}
+                          <a href="https://razorpay.com/docs/payments/payments/test-card-details/" target="_blank" rel="noreferrer">
+                            Razorpay test card
+                          </a>.
                         </div>
                       )}
                     </div>

@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import MobileBottomNav from './components/MobileBottomNav';
 import ForgotPassword from './pages/ForgotPassword';
 import VerifyOtp from './pages/VerifyOtp';
 import ResetPassword from './pages/ResetPassword';
@@ -219,6 +220,7 @@ function App() {
       </ErrorBoundary>
 
       <Footer />
+      <MobileBottomNav />
     </BrowserRouter>
   );
 }

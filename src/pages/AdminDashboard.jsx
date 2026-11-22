@@ -202,7 +202,7 @@ const AdminDashboard = () => {
             {/* Statistics Cards */}
             {stats && (
               <Row className="stats-grid">
-                <Col xs={12} sm={6} lg={3} className="mb-4">
+                <Col xs={6} lg={3} className="mb-3 mb-lg-4">
                   <Card className="stat-card">
                     <Card.Body className="d-flex align-items-center">
                       <div className="stat-icon me-3">
@@ -216,7 +216,7 @@ const AdminDashboard = () => {
                   </Card>
                 </Col>
 
-                <Col xs={12} sm={6} lg={3} className="mb-4">
+                <Col xs={6} lg={3} className="mb-3 mb-lg-4">
                   <Card className="stat-card">
                     <Card.Body className="d-flex align-items-center">
                       <div className="stat-icon me-3">
@@ -230,7 +230,7 @@ const AdminDashboard = () => {
                   </Card>
                 </Col>
 
-                <Col xs={12} sm={6} lg={3} className="mb-4">
+                <Col xs={6} lg={3} className="mb-3 mb-lg-4">
                   <Card className="stat-card">
                     <Card.Body className="d-flex align-items-center">
                       <div className="stat-icon me-3">
@@ -244,7 +244,7 @@ const AdminDashboard = () => {
                   </Card>
                 </Col>
 
-                <Col xs={12} sm={6} lg={3} className="mb-4">
+                <Col xs={6} lg={3} className="mb-3 mb-lg-4">
                   <Card className="stat-card">
                     <Card.Body className="d-flex align-items-center">
                       <div className="stat-icon me-3">

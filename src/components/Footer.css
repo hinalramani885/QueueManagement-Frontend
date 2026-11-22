@@ -252,3 +252,49 @@
     justify-content: center;
   }
 }
+/* Phones: stacked columns must not keep their desktop flex-basis (it becomes a 250px height) */
+@media (max-width: 768px) {
+  .footer-section {
+    padding: 32px 16px 20px;
+    border-radius: 28px 28px 0 0;
+  }
+  .footer-container {
+    gap: 22px;
+  }
+  .footer-brand,
+  .footer-links,
+  .footer-contact {
+    flex: 0 0 auto;
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .footer-brand .brand-description {
+    display: none;
+  }
+  .footer-links h4,
+  .footer-contact h4 {
+    margin-bottom: 12px;
+  }
+  .footer-links ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 10px;
+  }
+  .footer-links ul li {
+    margin-bottom: 0;
+  }
+  .footer-links ul li a {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 0.85rem;
+  }
+  .footer-contact h4.mt-3 {
+    margin-top: 1rem !important;
+  }
+  .footer-bottom {
+    margin-top: 22px;
+  }
+}

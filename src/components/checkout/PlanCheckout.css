@@ -622,3 +622,31 @@
     transition: none !important;
   }
 }
+
+/* ---------- UPI explainer ---------- */
+.pc-upi-how {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 14px;
+  background: var(--pc-surface-solid);
+  border: 1px solid var(--pc-border);
+}
+
+.pc-upi-how > i {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--pc-accent), var(--pc-accent-2));
+}
+
+.pc-upi-how strong { display: block; font-size: 0.9rem; }
+.pc-upi-how span { display: block; font-size: 0.8rem; color: var(--pc-muted); line-height: 1.45; }
+.pc-optional { font-weight: 500; color: var(--pc-muted); font-size: 0.78rem; }
+.pc-test-hint a { color: var(--pc-accent); font-weight: 600; }
