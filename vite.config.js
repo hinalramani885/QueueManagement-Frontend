@@ -8,8 +8,11 @@ export default defineConfig(({ mode }) => {
   // Where the Spring Boot backend runs during development
   const backendTarget = env.VITE_PROXY_TARGET || 'http://localhost:8081'
 
-  // Serve the dev server over HTTPS when the local certificate is present
-  const hasCert = fs.existsSync('ssl/key.pem') && fs.existsSync('ssl/cert.pem')
+  // The dev server runs on plain HTTP (http://localhost:5173) by default.
+  // Set VITE_DEV_HTTPS=true to serve it over HTTPS with the self-signed certificate in ssl/
+  // (browsers will show "Not secure" for that certificate).
+  const useHttps = env.VITE_DEV_HTTPS === 'true'
+    && fs.existsSync('ssl/key.pem') && fs.existsSync('ssl/cert.pem')
 
   const proxyOptions = {
     target: backendTarget,
@@ -23,7 +26,7 @@ export default defineConfig(({ mode }) => {
       global: 'window',
     },
     server: {
-      https: hasCert
+      https: useHttps
         ? { key: fs.readFileSync('ssl/key.pem'), cert: fs.readFileSync('ssl/cert.pem') }
         : undefined,
       host: true,
