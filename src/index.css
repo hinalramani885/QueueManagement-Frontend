@@ -159,8 +159,8 @@ body {
 }
 
 .app-main {
-  padding-top: 72px;
-  /* matches navbar height */
+  /* The navbar is sticky (it already takes its own space), so no extra top padding is needed */
+  padding-top: 0;
   min-height: 100vh;
   background-color: var(--bg-primary);
 }

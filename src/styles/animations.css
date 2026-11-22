@@ -1,0 +1,209 @@
+/*
+ * App-wide polish: smooth transitions, entrance animations and micro-interactions.
+ * Loaded after Bootstrap (see main.jsx). Everything is disabled for users who prefer reduced motion.
+ */
+
+/* ---------- Page entrance (runs on every route change) ---------- */
+/* Opacity + translate with "backwards" fill only, so no transform stays on the page afterwards
+   (a lasting transform would break position:fixed children). */
+.app-main > :first-child {
+  animation: app-page-enter 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+@keyframes app-page-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:not(:disabled):not(.disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px -8px rgba(15, 23, 42, 0.45);
+}
+
+.btn:not(:disabled):not(.disabled):active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: none;
+}
+
+.btn-close:hover { transform: rotate(90deg); transition: transform 0.25s ease; }
+
+/* ---------- Cards ---------- */
+.card {
+  --bs-card-border-radius: 16px;
+  --bs-card-inner-border-radius: 15px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, background-color 0.3s, border-color 0.3s;
+}
+
+.card:hover { box-shadow: var(--shadow-lg); }
+
+/* ---------- Form controls ---------- */
+.form-control,
+.form-select {
+  border-radius: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--search-primary);
+  box-shadow: 0 0 0 4px rgba(var(--search-primary-rgb), 0.18);
+}
+
+.form-check-input { transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.form-check-input:checked { background-color: var(--search-primary); border-color: var(--search-primary); }
+
+/* ---------- Modals & dropdowns ---------- */
+.modal.fade .modal-dialog {
+  transform: translateY(16px) scale(0.96);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.28s;
+}
+
+.modal.show .modal-dialog { transform: none; }
+
+.modal-content {
+  --bs-modal-border-radius: 18px;
+  --bs-modal-inner-border-radius: 17px;
+  border: 0;
+  box-shadow: 0 24px 60px -20px rgba(15, 23, 42, 0.45);
+}
+
+.dropdown-menu {
+  --bs-dropdown-border-radius: 12px;
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-lg);
+}
+
+.dropdown-menu.show { animation: app-pop-in 0.18s ease-out; }
+.dropdown-item { transition: background-color 0.15s, padding-left 0.15s; }
+.dropdown-item:hover { padding-left: 1.25rem; }
+
+@keyframes app-pop-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Tables, list groups, badges, nav tabs ---------- */
+.table tbody tr { transition: background-color 0.15s ease; }
+.list-group-item { transition: background-color 0.15s ease, transform 0.15s ease; }
+.list-group-item-action:hover { transform: translateX(3px); }
+.badge { transition: transform 0.2s ease; }
+.badge:hover { transform: scale(1.06); }
+.nav-tabs .nav-link,
+.nav-pills .nav-link { transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
+
+.progress-bar { transition: width 0.6s ease; }
+
+/* ---------- Alerts & toasts ---------- */
+.alert { border-radius: 12px; animation: app-fade-up 0.35s ease both; }
+.Toastify__toast { animation-duration: 0.45s; }
+
+/* ---------- Reusable utility classes ---------- */
+.fade-in-up { animation: app-fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.fade-in { animation: app-fade 0.5s ease both; }
+.scale-in { animation: app-scale-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+.stagger-children > * { animation: app-fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.06s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.12s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.18s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.24s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(n + 7) { animation-delay: 0.36s; }
+
+.hover-lift { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.hover-lift:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dark-mode .glass {
+  background: rgba(30, 35, 50, 0.7);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--navbar-bg-start), var(--search-primary), var(--accent-color));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: app-shine 6s linear infinite;
+}
+
+.pulse { animation: app-pulse 2s ease-in-out infinite; }
+
+.shimmer {
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--border-color) 37%, var(--bg-secondary) 63%);
+  background-size: 400% 100%;
+  animation: app-shimmer 1.4s ease infinite;
+}
+
+@keyframes app-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes app-fade { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes app-scale-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes app-shine { to { background-position: 200% center; } }
+
+@keyframes app-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes app-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* ---------- Scrollbar & selection ---------- */
+::selection { background: rgba(var(--search-primary-rgb), 0.25); }
+
+* { scrollbar-width: thin; scrollbar-color: rgba(var(--search-primary-rgb), 0.45) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: rgba(var(--search-primary-rgb), 0.45) padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(var(--search-primary-rgb), 0.7) padding-box; }
+
+html { scroll-behavior: smooth; }
+
+/* Keyboard focus that is visible but not noisy for mouse users */
+a:focus-visible,
+button:focus-visible,
+[role='button']:focus-visible {
+  outline: 3px solid rgba(var(--search-primary-rgb), 0.45);
+  outline-offset: 2px;
+}
+
+/* ---------- Respect reduced-motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
