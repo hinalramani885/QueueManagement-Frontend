@@ -133,6 +133,9 @@ const getInitials = (fullName) =>
                     <Button className="ql-nav-btn-warning" onClick={() => navigate('/pricing')}>
                       <i className="bi bi-star me-2"></i>Be an Admin
                     </Button>
+                    <Button className="ql-nav-btn-provider" onClick={() => navigate('/become-provider')}>
+                      <i className="bi bi-briefcase me-2"></i>Be a Provider
+                    </Button>
                   </>
                 ) : (
                   <>

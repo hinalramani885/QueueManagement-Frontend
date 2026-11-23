@@ -52,12 +52,6 @@ const Footer = () => {
               <i className="fas fa-phone-alt"></i> +1 (555) 123-4567
             </span> */}
           </div>
-          <h4 className="mt-3">Follow Us</h4>
-          <div className="social-icons">
-            <a href="https://github.com/harman-04" className="social-icon" target="_blank"><i className="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/harmandeep700" target="_blank" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
-
-          </div>
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -33,7 +33,7 @@ const themedSwal = (options) => {
   return Swal.fire({
     background: isDark ? '#1f2433' : '#fff',
     color: isDark ? '#f8f9fa' : '#212529',
-    confirmButtonColor: '#6d28d9',
+    confirmButtonColor: '#6366f1',
     ...options,
   });
 };
@@ -73,12 +73,36 @@ const PlanCheckout = ({
   confirmEndpoint,
   adminId,
   requireAdmin = false,
+  placePicker = false,
 }) => {
   const [loadingPlan, setLoadingPlan] = useState(null);
   const [result, setResult] = useState(null);
+  const [places, setPlaces] = useState([]);
+  const [placesLoading, setPlacesLoading] = useState(placePicker);
+  const [placeQuery, setPlaceQuery] = useState('');
+
+  // "Be a Provider": the provider picks the place they work at; the token is linked to its admin
+  useEffect(() => {
+    if (!placePicker) return undefined;
+    let cancelled = false;
+    axiosInstance
+      .get('/places')
+      .then(({ data }) => { if (!cancelled) setPlaces(Array.isArray(data) ? data.filter((p) => p.isActive !== false) : []); })
+      .catch(() => { if (!cancelled) setPlaces([]); })
+      .finally(() => { if (!cancelled) setPlacesLoading(false); });
+    return () => { cancelled = true; };
+  }, [placePicker]);
+
+  const filteredPlaces = useMemo(() => {
+    const q = placeQuery.trim().toLowerCase();
+    const list = q
+      ? places.filter((p) => [p.name, p.type, p.address].filter(Boolean).join(' ').toLowerCase().includes(q))
+      : places;
+    return list.slice(0, 50);
+  }, [places, placeQuery]);
 
   const formik = useFormik({
-    initialValues: { name: '', email: '', phone: '', method: 'upi', upiId: '' },
+    initialValues: { name: '', email: '', phone: '', method: 'upi', upiId: '', placeId: '' },
     validationSchema: Yup.object({
       name: Yup.string().trim().min(2, 'Enter your full name').max(100, 'Name is too long').required('Name is required'),
       email: Yup.string()
@@ -93,6 +117,7 @@ const PlanCheckout = ({
         .required('Mobile number is required')
         .test('phone', 'Enter a valid 10-digit Indian mobile number', (value) => PHONE_REGEX.test(cleanPhone(value))),
       method: Yup.string().oneOf(METHODS.map((m) => m.id)).required(),
+      placeId: placePicker ? Yup.string().required('Choose the place you work at') : Yup.string(),
       upiId: Yup.string()
         .trim()
         // Optional: saved with the payment record. Razorpay no longer accepts a typed UPI ID
@@ -114,7 +139,7 @@ const PlanCheckout = ({
   };
 
   const touchAll = () =>
-    formik.setTouched({ name: true, email: true, phone: true, method: true, upiId: true });
+    formik.setTouched({ name: true, email: true, phone: true, method: true, upiId: true, placeId: true });
 
   const recordFailure = (orderId, error) => {
     axiosInstance
@@ -162,7 +187,8 @@ const PlanCheckout = ({
           email,
           role,
           tokenType: plan.tokenType,
-          adminId: adminId || undefined,
+          adminId: placePicker ? undefined : adminId || undefined,
+          placeId: placePicker ? values.placeId : undefined,
           payerName: name,
           payerPhone: phone,
           upiId: upiId || undefined,
@@ -200,7 +226,7 @@ const PlanCheckout = ({
             preferences: { show_default_blocks: true },
           },
         },
-        theme: { color: variant === 'provider' ? '#0d9488' : '#6d28d9' },
+        theme: { color: variant === 'provider' ? '#14b8a6' : '#6366f1' },
         modal: {
           ondismiss: () => setLoadingPlan(null),
         },
@@ -218,6 +244,8 @@ const PlanCheckout = ({
             setResult({
               token: confirmRes.data.tokenValue,
               plan,
+              placeId: placePicker ? values.placeId : '',
+              placeName: placePicker ? places.find((p) => p.id === values.placeId)?.name : '',
               email,
               method: values.method,
               upiId,
@@ -318,6 +346,42 @@ const PlanCheckout = ({
                 </div>
                 {fieldInvalid('phone') && <div className="pc-error">{errors.phone}</div>}
               </div>
+
+              {placePicker && (
+                <div className="col-12">
+                  <span className="pc-label">Place you work at</span>
+                  <div className={`pc-input ${fieldInvalid('placeId') ? 'is-invalid' : ''}`}>
+                    <i className="bi bi-search" />
+                    <input aria-label="Search places" placeholder="Search by name, type or address"
+                      value={placeQuery} onChange={(e) => setPlaceQuery(e.target.value)} />
+                  </div>
+                  <div className="pc-places" role="listbox" aria-label="Places">
+                    {placesLoading && <div className="pc-places-empty"><span className="spinner-border spinner-border-sm" /> Loading places…</div>}
+                    {!placesLoading && filteredPlaces.length === 0 && (
+                      <div className="pc-places-empty">
+                        {places.length === 0
+                          ? 'No places have been created yet. Ask your admin to add your place first.'
+                          : 'No place matches your search.'}
+                      </div>
+                    )}
+                    {filteredPlaces.map((p) => (
+                      <button key={p.id} type="button" role="option" aria-selected={values.placeId === p.id}
+                        className={`pc-place ${values.placeId === p.id ? 'is-selected' : ''}`}
+                        onClick={() => { formik.setFieldValue('placeId', p.id); formik.setFieldTouched('placeId', true, false); }}>
+                        <i className="bi bi-geo-alt-fill" />
+                        <span className="pc-place-text">
+                          <strong>{p.name}</strong>
+                          <small>{[p.type, p.address].filter(Boolean).join(' · ')}</small>
+                        </span>
+                        {values.placeId === p.id && <i className="bi bi-check-circle-fill pc-place-check" />}
+                      </button>
+                    ))}
+                  </div>
+                  {fieldInvalid('placeId')
+                    ? <div className="pc-error">{errors.placeId}</div>
+                    : <div className="pc-help">Your token is linked to this place and its admin.</div>}
+                </div>
+              )}
 
               <div className="col-12">
                 <label className="pc-label" htmlFor="pc-email">{emailLabel}</label>
@@ -466,6 +530,7 @@ const PlanCheckout = ({
               <dl className="pc-summary">
                 <div><dt>Plan</dt><dd>{result.plan.name}</dd></div>
                 <div><dt>Registered email</dt><dd>{result.email}</dd></div>
+                {result.placeName && <div><dt>Place</dt><dd>{result.placeName}</dd></div>}
                 <div><dt>Method</dt><dd>{METHOD_LABELS[result.method]}{result.upiId ? ` · ${result.upiId}` : ''}</dd></div>
                 <div><dt>Payment ID</dt><dd className="pc-mono">{result.paymentId}</dd></div>
               </dl>
@@ -474,7 +539,15 @@ const PlanCheckout = ({
                 <button type="button" className="pc-btn-outline" onClick={copyToken}>
                   <i className="bi bi-clipboard-check" /> Copy token
                 </button>
-                <Link to="/register" className="pc-buy pc-buy--inline">
+                <Link
+                  to={`/register?${new URLSearchParams({
+                    role,
+                    token: result.token,
+                    email: result.email,
+                    ...(result.placeId ? { placeId: result.placeId } : {}),
+                  }).toString()}`}
+                  className="pc-buy pc-buy--inline"
+                >
                   <i className="bi bi-person-plus-fill" /> Continue to registration
                 </Link>
               </div>

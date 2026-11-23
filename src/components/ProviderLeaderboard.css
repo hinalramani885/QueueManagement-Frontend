@@ -38,7 +38,7 @@
 }
 
 .provider-leaderboard-table thead th {
-    background: linear-gradient(135deg, var(--search-primary) 0%, #4a6fdc 100%);
+    background: linear-gradient(135deg, var(--search-primary) 0%, var(--brand, #6366f1) 100%);
     color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -52,7 +52,7 @@
 }
 
 .provider-leaderboard-table thead th:hover {
-    background: linear-gradient(135deg, #4a6fdc 0%, var(--search-primary) 100%);
+    background: linear-gradient(135deg, var(--brand, #6366f1) 0%, var(--search-primary) 100%);
 }
 
 .provider-leaderboard-table thead th svg {

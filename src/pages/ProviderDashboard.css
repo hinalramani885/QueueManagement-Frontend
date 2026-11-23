@@ -339,7 +339,7 @@
 }
 
 .provider-dashboard-waiting .provider-dashboard-stat-icon {
-  background: linear-gradient(135deg, var(--search-primary), #4a6fdc);
+  background: linear-gradient(135deg, var(--search-primary), var(--brand, #6366f1));
 }
 
 .provider-dashboard-in-service .provider-dashboard-stat-icon {

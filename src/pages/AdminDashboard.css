@@ -238,7 +238,7 @@
 
 .queues-table .badge.bg-info,
 .payments-table .badge.bg-info {
-  background: linear-gradient(135deg, var(--search-primary), #4a6fdc) !important;
+  background: linear-gradient(135deg, var(--search-primary), var(--brand, #6366f1)) !important;
   color: white;
 }
 
@@ -250,7 +250,7 @@
 
 .queues-table .badge.bg-primary,
 .payments-table .badge.bg-primary {
-  background: linear-gradient(135deg, var(--search-primary), #4a6fdc) !important;
+  background: linear-gradient(135deg, var(--search-primary), var(--brand, #6366f1)) !important;
   color: white;
 }
 
@@ -305,7 +305,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--search-primary), #4a6fdc);
+  background: linear-gradient(135deg, var(--search-primary), var(--brand, #6366f1));
   color: white;
   display: flex;
   align-items: center;
@@ -584,7 +584,7 @@
 
 .admin-dashboard .queues-table thead th,
 .admin-dashboard .payments-table thead th {
-    background: linear-gradient(135deg, var(--search-primary), #4a6fdc);
+    background: linear-gradient(135deg, var(--search-primary), var(--brand, #6366f1));
     color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -680,7 +680,7 @@
 
 .admin-dashboard .queues-table .badge.bg-info,
 .admin-dashboard .payments-table .badge.bg-info {
-    background: linear-gradient(135deg, var(--search-primary), #4a6fdc) !important;
+    background: linear-gradient(135deg, var(--search-primary), var(--brand, #6366f1)) !important;
     color: white;
 }
 
@@ -692,7 +692,7 @@
 
 .admin-dashboard .queues-table .badge.bg-primary,
 .admin-dashboard .payments-table .badge.bg-primary {
-    background: linear-gradient(135deg, var(--search-primary), #4a6fdc) !important;
+    background: linear-gradient(135deg, var(--search-primary), var(--brand, #6366f1)) !important;
     color: white;
 }
 
@@ -734,7 +734,7 @@
 
 /* ===== Buy Provider Tokens Button ===== */
 .admin-dashboard .card-header-styled .btn-primary {
-    background: linear-gradient(145deg, var(--search-primary), #4a6fdc);
+    background: linear-gradient(145deg, var(--search-primary), var(--brand, #6366f1));
     border: none;
     border-radius: 40px;
     padding: 0.5rem 1.5rem;
@@ -751,7 +751,7 @@
 .admin-dashboard .card-header-styled .btn-primary:hover {
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 8px 20px rgba(var(--search-primary-rgb), 0.4);
-    background: linear-gradient(145deg, #4a6fdc, var(--search-primary));
+    background: linear-gradient(145deg, var(--brand, #6366f1), var(--search-primary));
 }
 
 .admin-dashboard .card-header-styled .btn-primary:active {

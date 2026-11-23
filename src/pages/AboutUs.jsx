@@ -4,7 +4,7 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {
   FaHeart, FaRocket, FaUsers, FaShieldAlt, FaMobileAlt, FaChartLine,
-  FaQrcode, FaClock, FaCheckCircle, FaGithub, FaLinkedin, FaEnvelope
+  FaQrcode, FaClock, FaCheckCircle, FaEnvelope
 } from 'react-icons/fa';
 import './AboutUs.css';
 

@@ -109,7 +109,7 @@
 
 /* Create queue button */
 .provider-queue-card .btn-primary {
-    background: linear-gradient(145deg, var(--search-primary), #4a6fdc);
+    background: linear-gradient(145deg, var(--search-primary), var(--brand, #6366f1));
     border: none;
     border-radius: 12px;
     font-weight: 600;
@@ -172,7 +172,7 @@
 }
 
 .queue-card .badge.bg-info {
-    background: linear-gradient(135deg, var(--search-primary), #4a6fdc) !important;
+    background: linear-gradient(135deg, var(--search-primary), var(--brand, #6366f1)) !important;
     color: white;
 }
 

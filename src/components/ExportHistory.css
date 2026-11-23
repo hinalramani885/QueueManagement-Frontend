@@ -165,7 +165,7 @@
 }
 
 .export-history-modal .btn-primary {
-  background: linear-gradient(145deg, var(--search-primary), #4a6fdc);
+  background: linear-gradient(145deg, var(--search-primary), var(--brand, #6366f1));
   border: none;
   color: white;
   border-radius: 30px;

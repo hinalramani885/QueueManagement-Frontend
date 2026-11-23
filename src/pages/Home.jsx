@@ -415,7 +415,7 @@ const [loadingLiveStats, setLoadingLiveStats] = useState(true);
                   <Button variant="primary" size="lg" onClick={() => navigate('/pricing')} className="me-3 mb-3">
                     Become an Admin
                   </Button>
-                  <Button variant="outline-primary" size="lg" onClick={() => navigate('/provider-pricing')} className="mb-3">
+                  <Button variant="outline-primary" size="lg" onClick={() => navigate('/become-provider')} className="mb-3">
                     Become a Provider
                   </Button>
                 </>
