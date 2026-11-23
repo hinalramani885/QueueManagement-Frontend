@@ -1,5 +1,5 @@
 /*
- * QueueLess soft theme – light, calm colours with clear accents.
+ * QFlow soft theme – light, calm colours with clear accents.
  * Loaded last (see main.jsx) so it overrides index.css variables, Bootstrap and older page styles.
  *
  * Palette
@@ -419,3 +419,85 @@ body {
 
 /* SweetAlert buttons */
 .swal2-styled.swal2-confirm { background: var(--brand-gradient) !important; border-radius: 12px !important; }
+
+/* ---------- QFlow brand (logo colours: navy #0b3a7e, blue #1f7ae0) ---------- */
+.qf-brand {
+  gap: 0.55rem;
+  margin-right: 0.5rem;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.qf-brand:hover { transform: translateY(-1px) scale(1.02); }
+
+.qf-brand-mark {
+  display: inline-grid;
+  place-items: center;
+  height: 42px;
+  padding: 3px 4px;
+  border-radius: 12px;
+  transition: background 0.3s;
+}
+
+.qf-brand-mark img {
+  height: 36px;
+  width: auto;
+  display: block;
+  animation: qf-mark-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.qf-brand:hover .qf-brand-mark img { animation: qf-mark-nudge 0.6s ease; }
+
+.qf-brand-text {
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #0b3a7e;
+}
+
+.qf-brand-text span { color: #1f7ae0; }
+
+/* the navy logo needs a light badge on dark backgrounds */
+.dark-mode .qf-brand-mark { background: #ffffff; }
+.dark-mode .qf-brand-text { color: #e8eaf6; }
+.dark-mode .qf-brand-text span { color: #60a5fa; }
+
+@keyframes qf-mark-in {
+  from { opacity: 0; transform: scale(0.6) rotate(-12deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes qf-mark-nudge {
+  0%, 100% { transform: translateX(0); }
+  40% { transform: translateX(3px); }
+  70% { transform: translateX(-1px); }
+}
+
+@media (max-width: 575.98px) {
+  .qf-brand-mark { height: 38px; }
+  .qf-brand-mark img { height: 32px; }
+  .qf-brand-text { font-size: 1.4rem; }
+}
+
+.footer-logo {
+  display: block;
+  width: 120px;
+  height: auto;
+  margin-bottom: 0.75rem;
+}
+
+.dark-mode .footer-logo {
+  padding: 8px 10px;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .footer-logo { margin-left: auto; margin-right: auto; width: 104px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qf-brand-mark img { animation: none !important; }
+}

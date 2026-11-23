@@ -27,7 +27,7 @@ function devCaDownload() {
           return
         }
         res.setHeader('Content-Type', 'application/x-x509-ca-cert')
-        res.setHeader('Content-Disposition', 'attachment; filename="queueless-dev-ca.crt"')
+        res.setHeader('Content-Disposition', 'attachment; filename="qflow-dev-ca.crt"')
         res.end(fs.readFileSync(caFile))
       })
     },

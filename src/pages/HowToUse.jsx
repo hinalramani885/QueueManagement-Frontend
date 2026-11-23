@@ -15,7 +15,7 @@ const HowToUse = () => {
       <Container className="py-5">
         {/* Header */}
         <div className="text-center mb-5">
-          <h1 className="display-4 fw-bold gradient-text">How to Use QueueLess</h1>
+          <h1 className="display-4 fw-bold gradient-text">How to Use QFlow</h1>
           <p className="lead text-muted">A complete guide for users, providers, and administrators</p>
         </div>
 

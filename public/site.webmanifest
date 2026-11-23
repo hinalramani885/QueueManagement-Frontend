@@ -1,13 +1,13 @@
 {
   "id": "/",
-  "name": "QueueLess – Smart Queue Management",
-  "short_name": "QueueLess",
+  "name": "QFlow – Smart Queue Management",
+  "short_name": "QFlow",
   "description": "Join queues, track wait times, and get notified when it's your turn.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#4f46e5",
+  "theme_color": "#0b3a7e",
   "background_color": "#ffffff",
   "categories": ["productivity", "business"],
   "icons": [

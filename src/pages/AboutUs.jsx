@@ -15,7 +15,7 @@ const AboutUs = () => {
         {/* Hero Section */}
         <Row className="mb-5 text-center">
           <Col>
-            <h1 className="display-3 fw-bold gradient-text">About QueueLess</h1>
+            <h1 className="display-3 fw-bold gradient-text">About QFlow</h1>
             <p className="lead text-muted">Revolutionizing the way you wait</p>
           </Col>
         </Row>
@@ -52,7 +52,7 @@ const AboutUs = () => {
             <div className="solution-card p-4 h-100">
               <h3 className="text-success mb-3">Our Solution</h3>
               <p>
-                QueueLess provides a digital queue management system that works for any business.
+                QFlow provides a digital queue management system that works for any business.
                 Customers can join queues remotely, track their position, and get notified when it's almost their turn.
                 Businesses gain real‑time analytics, customer feedback, and the ability to manage multiple locations effortlessly.
               </p>
@@ -63,7 +63,7 @@ const AboutUs = () => {
         {/* Key Features */}
         <Row className="mb-5">
           <Col>
-            <h2 className="text-center mb-4">What Makes QueueLess Different</h2>
+            <h2 className="text-center mb-4">What Makes QFlow Different</h2>
             <Row className="g-4">
               <Col md={4}>
                 <div className="feature-card text-center p-4 h-100">
@@ -151,7 +151,7 @@ const AboutUs = () => {
             <div className="philosophy-card text-center p-5">
               <p className="lead">
                 We believe that technology should serve people, not the other way around.
-                QueueLess was born from the frustration of waiting in lines and the desire to create a seamless,
+                QFlow was born from the frustration of waiting in lines and the desire to create a seamless,
                 respectful experience for everyone.
               </p>
               <p>
@@ -170,7 +170,7 @@ const AboutUs = () => {
               <Card.Body className="p-5">
                 <h3>Ready to transform your waiting experience?</h3>
                 <p className="mb-4">
-                  Join the thousands of businesses and customers who trust QueueLess.
+                  Join the thousands of businesses and customers who trust QFlow.
                 </p>
                 <div className="d-flex justify-content-center gap-3 flex-wrap">
                   <Link to="/register" className="btn btn-primary btn-lg px-4">Get Started</Link>

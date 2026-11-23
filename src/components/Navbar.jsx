@@ -80,22 +80,12 @@ const getInitials = (fullName) =>
     <>
       <nav className={`ql-navbar navbar navbar-expand-lg sticky-top ${scrolled ? 'scrolled' : ''}`}>
         <div className="container-fluid px-3 px-lg-4">
-          {/* Advanced Brand Logo with Animation */}
-          <Link to="/" className="navbar-brand fw-bold fs-3 d-flex align-items-center ql-logo-animation-container">
-            <div className="ql-logo-art me-2">
-              <div className="ql-logo-circle">
-                <div className="ql-logo-inner-circle"></div>
-              </div>
-              <div className="ql-logo-line ql-logo-line-1"></div>
-              <div className="ql-logo-line ql-logo-line-2"></div>
-              <div className="ql-logo-line ql-logo-line-3"></div>
-              <div className="ql-logo-line ql-logo-line-4"></div>
-              <div className="ql-logo-line ql-logo-line-5"></div>
-              <div className="ql-logo-line ql-logo-line-6"></div>
-              <div className="ql-logo-person"></div>
-              <div className="ql-logo-arrow"></div>
-            </div>
-            <span className="ql-brand-text">QueueLess</span>
+          {/* QFlow brand: logo mark + name */}
+          <Link to="/" className="navbar-brand d-flex align-items-center qf-brand" aria-label="QFlow home">
+            <span className="qf-brand-mark">
+              <img src="/qflow-mark.png" alt="" width="46" height="35" />
+            </span>
+            <span className="qf-brand-text">Q<span>Flow</span></span>
             {isAuthenticated && connected && (
               <Badge bg="success" className="ms-2 ql-live-badge" pill>
                 <span className="ql-live-dot"></span>

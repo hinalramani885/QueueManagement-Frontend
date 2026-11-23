@@ -24,7 +24,7 @@ const Legal = () => {
                   <Accordion.Item eventKey="0">
                     <Accordion.Header>1. Information We Collect</Accordion.Header>
                     <Accordion.Body>
-                      <p>QueueLess collects the following types of information:</p>
+                      <p>QFlow collects the following types of information:</p>
                       <ul>
                         <li><strong>Account Information:</strong> Name, email address, phone number, password (hashed).</li>
                         <li><strong>Profile Information:</strong> Profile picture (optional), preferences (notification settings, language, etc.).</li>
@@ -89,7 +89,7 @@ const Legal = () => {
                         <li><strong>Opt‑out:</strong> Disable email or push notifications in your preferences.</li>
                         <li><strong>Data Portability:</strong> Export your token history.</li>
                       </ul>
-                      <p>To exercise these rights, contact us at <a href="mailto:support@queueless.com">support@queueless.com</a>.</p>
+                      <p>To exercise these rights, contact us at <a href="mailto:support@qflow.com">support@qflow.com</a>.</p>
                     </Accordion.Body>
                   </Accordion.Item>
 
@@ -103,7 +103,7 @@ const Legal = () => {
                   <Accordion.Item eventKey="6">
                     <Accordion.Header>7. Children's Privacy</Accordion.Header>
                     <Accordion.Body>
-                      <p>QueueLess is not intended for children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with data, please contact us to have it removed.</p>
+                      <p>QFlow is not intended for children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with data, please contact us to have it removed.</p>
                     </Accordion.Body>
                   </Accordion.Item>
 
@@ -119,7 +119,7 @@ const Legal = () => {
                     <Accordion.Body>
                       <p>If you have any questions about this Privacy Policy, please contact us:</p>
                       <ul>
-                        <li>Email: <a href="mailto:privacy@queueless.com">privacy@queueless.com</a></li>
+                        <li>Email: <a href="mailto:privacy@qflow.com">privacy@qflow.com</a></li>
                         <li>Address: [Your Business Address]</li>
                       </ul>
                     </Accordion.Body>
@@ -139,14 +139,14 @@ const Legal = () => {
                   <Accordion.Item eventKey="0">
                     <Accordion.Header>1. Acceptance of Terms</Accordion.Header>
                     <Accordion.Body>
-                      <p>By accessing or using QueueLess, you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service.</p>
+                      <p>By accessing or using QFlow, you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service.</p>
                     </Accordion.Body>
                   </Accordion.Item>
 
                   <Accordion.Item eventKey="1">
                     <Accordion.Header>2. Description of Service</Accordion.Header>
                     <Accordion.Body>
-                      <p>QueueLess provides a digital queue management system that allows users to join queues, providers to manage service flow, and administrators to oversee multiple locations. The Service includes a website, mobile‑optimized interface, and APIs.</p>
+                      <p>QFlow provides a digital queue management system that allows users to join queues, providers to manage service flow, and administrators to oversee multiple locations. The Service includes a website, mobile‑optimized interface, and APIs.</p>
                     </Accordion.Body>
                   </Accordion.Item>
 
@@ -184,8 +184,8 @@ const Legal = () => {
                   <Accordion.Item eventKey="5">
                     <Accordion.Header>6. Intellectual Property</Accordion.Header>
                     <Accordion.Body>
-                      <p>All content, logos, and code are the property of QueueLess or its licensors. You may not copy, modify, or distribute any part of the Service without written permission.</p>
-                      <p>You retain ownership of the content you submit (e.g., feedback, profile information), but grant QueueLess a worldwide, royalty‑free license to use, store, and display that content in connection with the Service.</p>
+                      <p>All content, logos, and code are the property of QFlow or its licensors. You may not copy, modify, or distribute any part of the Service without written permission.</p>
+                      <p>You retain ownership of the content you submit (e.g., feedback, profile information), but grant QFlow a worldwide, royalty‑free license to use, store, and display that content in connection with the Service.</p>
                     </Accordion.Body>
                   </Accordion.Item>
 
@@ -199,14 +199,14 @@ const Legal = () => {
                   <Accordion.Item eventKey="7">
                     <Accordion.Header>8. Limitation of Liability</Accordion.Header>
                     <Accordion.Body>
-                      <p>To the fullest extent permitted by law, QueueLess and its affiliates shall not be liable for any indirect, incidental, or consequential damages arising out of your use of the Service. Our total liability shall not exceed the amount you paid us, if any, in the past 12 months.</p>
+                      <p>To the fullest extent permitted by law, QFlow and its affiliates shall not be liable for any indirect, incidental, or consequential damages arising out of your use of the Service. Our total liability shall not exceed the amount you paid us, if any, in the past 12 months.</p>
                     </Accordion.Body>
                   </Accordion.Item>
 
                   <Accordion.Item eventKey="8">
                     <Accordion.Header>9. Indemnification</Accordion.Header>
                     <Accordion.Body>
-                      <p>You agree to indemnify and hold QueueLess harmless from any claims, damages, or expenses arising from your use of the Service or violation of these Terms.</p>
+                      <p>You agree to indemnify and hold QFlow harmless from any claims, damages, or expenses arising from your use of the Service or violation of these Terms.</p>
                     </Accordion.Body>
                   </Accordion.Item>
 
@@ -234,7 +234,7 @@ const Legal = () => {
                   <Accordion.Item eventKey="12">
                     <Accordion.Header>13. Contact</Accordion.Header>
                     <Accordion.Body>
-                      <p>If you have any questions about these Terms, please contact us at <a href="mailto:legal@queueless.com">legal@queueless.com</a>.</p>
+                      <p>If you have any questions about these Terms, please contact us at <a href="mailto:legal@qflow.com">legal@qflow.com</a>.</p>
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -244,7 +244,7 @@ const Legal = () => {
         </Row>
 
         <div className="text-center mt-5 text-muted small">
-          <p>© {new Date().getFullYear()} QueueLess. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} QFlow. All rights reserved.</p>
           <p>This document was last updated on March 20, 2026.</p>
         </div>
       </Container>

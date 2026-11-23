@@ -45,7 +45,7 @@ const BecomeProviderPage = () => (
     plans={plans}
     emailLabel="Your email (used for registration)"
     allowedDomains={TRUSTED_DOMAINS}
-    checkoutName="QueueLess Provider Access"
+    checkoutName="QFlow Provider Access"
     checkoutDescription="Provider registration token"
     confirmEndpoint="/payment/confirm-provider"
     placePicker

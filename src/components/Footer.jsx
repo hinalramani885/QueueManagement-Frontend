@@ -22,7 +22,8 @@ const Footer = () => {
       <div className="footer-container">
         {/* Brand Section */}
         <div className="footer-brand">
-          <h2 className="brand-name">Queue<span>Less</span></h2>
+          <img src="/qflow-logo.png" alt="QFlow" className="footer-logo" width="120" height="123" />
+          <h2 className="brand-name visually-hidden">QFlow</h2>
           <p className="brand-tagline">
             Making your waiting experience simple, smart, and seamless.
           </p>
@@ -56,7 +57,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} <strong>QueueLess</strong>. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} <strong>QFlow</strong>. All rights reserved.</p>
         <small>Crafted with ❤️ for a smoother queuing experience.</small>
       </div>
 
