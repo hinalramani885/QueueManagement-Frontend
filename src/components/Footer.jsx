@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
+import { SUPPORT_EMAIL } from "../config";
 
 const Footer = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -46,8 +47,8 @@ const Footer = () => {
         <div className="footer-contact">
           <h4>Contact Us</h4>
           <div className="contact-info">
-            <a href="mailto:harmandeep02315@gmail.com" className="contact-link">
-              <i className="fas fa-envelope"></i> harmandeep02315@gmail.com
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="contact-link">
+              <i className="fas fa-envelope"></i> {SUPPORT_EMAIL}
             </a>
             {/* <span className="contact-phone">
               <i className="fas fa-phone-alt"></i> +1 (555) 123-4567

@@ -1,5 +1,6 @@
 // Documentation.jsx
 import React, { useState, useEffect } from 'react';
+import { SUPPORT_EMAIL } from '../config';
 import { Container, Row, Col, Card, ListGroup, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaCopy, FaCheck } from 'react-icons/fa';
@@ -536,7 +537,7 @@ client.activate();`}
                                 </div>
                                 <div className="faq-item">
                                     <h5>How do I get support?</h5>
-                                    <p>For bugs or feature requests, please open an issue on GitHub. For urgent matters, contact support@qflow.com.</p>
+                                    <p>For bugs or feature requests, please open an issue on GitHub. For anything else, contact us at <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.</p>
                                 </div>
                             </div>
                         </section>
