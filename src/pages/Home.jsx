@@ -124,7 +124,7 @@ const [loadingLiveStats, setLoadingLiveStats] = useState(true);
             </Button>
             {token && (
               <Button size="lg" variant="outline-light" className="shadow-sm" onClick={() => setShowScanner(true)}>
-                <FaQrcode className="me-2" /> Scan QR
+                <FaQrcode className="me-2" /> Scan QR 
               </Button>
             )}
           </div>
@@ -156,7 +156,7 @@ const [loadingLiveStats, setLoadingLiveStats] = useState(true);
                   <FaClock size={50} />
                 </div>
                 <h5>Real-Time Updates</h5>
-                <p className="text-secondary">Receive live notifications on queue status and estimated wait times.</p>
+                <p className="text-secondary">Receive the live notifications on queue status and estimated wait times.</p>
               </div>
             </div>
             <div className="col-md-4">
@@ -250,7 +250,7 @@ const [loadingLiveStats, setLoadingLiveStats] = useState(true);
 {/* Pricing Teaser */}
 <AnimatedSection className="pricing-teaser-section py-5">
   <div className="container">
-    <h2 className="text-center fw-bold mb-5 section-title">Simple, Transparent Pricing</h2>
+    <h2 className="text-center fw-bold mb-5 section-title">Transparent Pricing</h2>
     <div className="row g-4 justify-content-center">
       {/* Basic Plan */}
       <div className="col-md-4">
@@ -296,7 +296,7 @@ const [loadingLiveStats, setLoadingLiveStats] = useState(true);
           <h3 className="pricing-plan-name">Enterprise</h3>
           <div className="pricing-price">
             <span className="pricing-amount">₹1000</span>
-            <span className="pricing-duration">lifetime</span>
+            <span className="pricing-duration">lifetime access</span>
           </div>
           <p className="pricing-description">Full access for platform leaders.</p>
           <Button

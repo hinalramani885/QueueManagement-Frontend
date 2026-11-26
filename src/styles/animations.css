@@ -3,7 +3,7 @@
  * Loaded after Bootstrap (see main.jsx). Everything is disabled for users who prefer reduced motion.
  */
 
-/* ---------- Page entrance (runs on every route change) ---------- */
+/* ---------- Page entrance (runs on every route change) and also it changes show on page layout ---------- */
 /* Opacity + translate with "backwards" fill only, so no transform stays on the page afterwards
    (a lasting transform would break position:fixed children). */
 .app-main > :first-child {
