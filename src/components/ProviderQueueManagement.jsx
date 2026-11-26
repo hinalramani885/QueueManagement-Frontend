@@ -79,7 +79,7 @@ const ProviderQueueManagement = () => {
 
       if (response.status === 204) {
         setQueues([]);
-        toast.info("You don't have any queues yet.");
+        // empty state is shown inline on the page (and the onboarding banner for new providers)
         return;
       }
 
@@ -91,7 +91,7 @@ const ProviderQueueManagement = () => {
     } catch (error) {
       if (error.response?.status === 404 || error.response?.status === 204) {
         setQueues([]);
-        toast.info("You don't have any queues yet.");
+        // empty state is shown inline on the page (and the onboarding banner for new providers)
       } else if (error.response?.status === 403) {
         toast.error("You don't have permission to view these queues.");
       } else {
@@ -219,6 +219,33 @@ const ProviderQueueManagement = () => {
           <FaSignOutAlt className="me-2" /> Logout
         </button>
       </div>
+
+      {managedPlaces.length === 0 && (
+        <div className="pq-onboarding mb-4">
+          <div className="pq-onboarding-icon"><i className="bi bi-shop" /></div>
+          <div className="flex-grow-1">
+            <h5 className="mb-1">Add your business place to get started</h5>
+            <p className="mb-0 text-muted small">
+              Add your place (name, address, hours), then its services. After that you can open queues for customers.
+            </p>
+          </div>
+          <button type="button" className="btn btn-primary" onClick={() => navigate('/provider/places/new')}>
+            <i className="bi bi-plus-lg me-1" /> Add my place
+          </button>
+        </div>
+      )}
+      {managedPlaces.length > 0 && managedServices.length === 0 && (
+        <div className="pq-onboarding mb-4">
+          <div className="pq-onboarding-icon"><i className="bi bi-list-check" /></div>
+          <div className="flex-grow-1">
+            <h5 className="mb-1">Add a service to your place</h5>
+            <p className="mb-0 text-muted small">Queues are opened per service, e.g. "Haircut" or "General consultation".</p>
+          </div>
+          <button type="button" className="btn btn-primary" onClick={() => navigate('/provider/places')}>
+            <i className="bi bi-plus-lg me-1" /> Add a service
+          </button>
+        </div>
+      )}
 
       <div className="card shadow-lg border-0 mb-5 animate__animated animate__fadeInUp provider-queue-card">
         <div className="card-body p-4">

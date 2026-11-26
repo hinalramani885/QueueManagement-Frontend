@@ -16,7 +16,8 @@ import './Register.css';
 
 const Register = () => {
   const navigate = useNavigate();
-  // Pricing pages link here with ?role=&token=&email=&placeId= so the buyer does not retype them
+  // Pricing pages link here with ?role=&token=&email= so the buyer does not retype them.
+  // Providers sign up without a place: they add their own place after registering.
   const [searchParams] = useSearchParams();
   const roleParam = searchParams.get('role');
   const initialRole = roleParam === 'ADMIN' || roleParam === 'PROVIDER' ? roleParam : 'USER';
@@ -32,7 +33,6 @@ const Register = () => {
       password: '',
       role: initialRole,
       token: searchParams.get('token') || '',
-      placeId: searchParams.get('placeId') || '',
       preferences: {
         emailNotifications: true,
         smsNotifications: false,
@@ -52,12 +52,13 @@ const Register = () => {
           password: values.password,
           role: values.role,
           token: role !== 'USER' ? values.token : undefined,
-          placeId: role === 'PROVIDER' ? values.placeId : undefined,
           preferences: values.preferences
         };
 
         await authService.register(payload);
-        toast.success('Registration successful! Please verify your email.');
+        toast.success(role === 'PROVIDER'
+          ? 'Registration successful! Verify your email, then log in and add your business place.'
+          : 'Registration successful! Please verify your email.');
         navigate('/verify-email', { state: { email: values.email } });
       } catch (err) {
         toast.error(err.response?.data || 'Registration failed');
@@ -195,28 +196,6 @@ const Register = () => {
                   autoComplete="off"
                 />
                 {touched.token && errors.token && <div className="invalid-feedback">{errors.token}</div>}
-              </div>
-            </div>
-          )}
-
-          {/* Place ID Field (for PROVIDER) */}
-          {role === 'PROVIDER' && (
-            <div className="mb-3">
-              <label className="form-label">Place ID (Optional)</label>
-              <div className="input-group">
-                <span className="input-group-text bg-light border-end-0">
-                  <FontAwesomeIcon icon={faUser} className="text-secondary" />
-                </span>
-                <input
-                  type="text"
-                  name="placeId"
-                  className={`form-control border-start-0 ${touched.placeId && errors.placeId ? 'is-invalid' : ''}`}
-                  value={values.placeId}
-                  onChange={handleChange}
-                  placeholder="Enter your place ID if applicable"
-                  autoComplete="off"
-                />
-                {touched.placeId && errors.placeId && <div className="invalid-feedback">{errors.placeId}</div>}
               </div>
             </div>
           )}

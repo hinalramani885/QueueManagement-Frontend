@@ -129,7 +129,11 @@ const AdminPlaces = () => {
                 <div className="ql-ap-empty-state-card text-center py-5 shadow-sm">
                     <FaInfoCircle size={40} className="mb-3 ql-ap-empty-state-icon" />
                     <h4 className="fw-bold">No Places Found</h4>
-                    <p className="text-muted">You haven't added any places yet. Get started by creating your first one!</p>
+                    <p className="text-muted">
+                        {isAdmin
+                            ? "You haven't added any places yet. Get started by creating your first one!"
+                            : 'Add your business place (name, address, opening hours). It is linked to your account, and then you can add its services and open queues.'}
+                    </p>
                     <Button onClick={() => navigate(newPlacePath(role))} variant="primary" className="mt-3">
                         <FaPlus className="me-2" /> Create First Place
                     </Button>
