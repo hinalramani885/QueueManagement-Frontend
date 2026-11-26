@@ -1,4 +1,5 @@
 import React from 'react';
+import { SUPPORT_EMAIL } from '../config';
 import { Container, Row, Col, Card, Accordion, Badge } from 'react-bootstrap';
 import { FaShieldAlt, FaFileContract, FaUserSecret, FaCookie, FaTrashAlt, FaEnvelope } from 'react-icons/fa';
 import './Legal.css';
@@ -89,7 +90,7 @@ const Legal = () => {
                         <li><strong>Opt‑out:</strong> Disable email or push notifications in your preferences.</li>
                         <li><strong>Data Portability:</strong> Export your token history.</li>
                       </ul>
-                      <p>To exercise these rights, contact us at <a href="mailto:support@qflow.com">support@qflow.com</a>.</p>
+                      <p>To exercise these rights, contact us at <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.</p>
                     </Accordion.Body>
                   </Accordion.Item>
 
@@ -119,7 +120,7 @@ const Legal = () => {
                     <Accordion.Body>
                       <p>If you have any questions about this Privacy Policy, please contact us:</p>
                       <ul>
-                        <li>Email: <a href="mailto:privacy@qflow.com">privacy@qflow.com</a></li>
+                        <li>Email: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></li>
                         <li>Address: [Your Business Address]</li>
                       </ul>
                     </Accordion.Body>
@@ -234,7 +235,7 @@ const Legal = () => {
                   <Accordion.Item eventKey="12">
                     <Accordion.Header>13. Contact</Accordion.Header>
                     <Accordion.Body>
-                      <p>If you have any questions about these Terms, please contact us at <a href="mailto:legal@qflow.com">legal@qflow.com</a>.</p>
+                      <p>If you have any questions about these Terms, please contact us at <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.</p>
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>

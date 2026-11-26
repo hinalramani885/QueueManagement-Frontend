@@ -7,6 +7,9 @@
 
 const BACKEND_URL = (import.meta.env.VITE_BACKEND_URL || '').replace(/\/+$/, '');
 
+/** The one QFlow contact address shown everywhere in the app (footer, legal pages, docs). */
+export const SUPPORT_EMAIL = import.meta.env.VITE_SUPPORT_EMAIL || 'qflowapplication@gmail.com';
+
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || `${BACKEND_URL}/api`;
 
 // SockJS endpoint (relative URLs are resolved against the current page)
