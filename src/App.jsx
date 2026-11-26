@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import MobileBottomNav from './components/MobileBottomNav';
+import AppEffects from './components/ui/AppEffects';
 import ForgotPassword from './pages/ForgotPassword';
 import VerifyOtp from './pages/VerifyOtp';
 import ResetPassword from './pages/ResetPassword';
@@ -116,6 +117,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <AppEffects />
       <Navbar />
       <ErrorBoundary>
         <main className="app-main">

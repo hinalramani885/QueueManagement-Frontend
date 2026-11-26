@@ -8,6 +8,7 @@ import WebSocketService from '../services/websocketService';
 import { FaSearch, FaQrcode } from 'react-icons/fa';
 import "./Navbar.css";
 import QRScannerModal from './QRScannerModal';
+import AccentPicker from './ui/AccentPicker';
 import { toggleDarkMode } from '../redux/authSlice';
 import { toast } from "react-toastify";
 import { messaging, getToken } from '../firebase';
@@ -95,6 +96,11 @@ const getInitials = (fullName) =>
           </Link>
 
           {/* Mobile Toggle with Animation */}
+          {/* Colour theme picker – visible on every screen size */}
+          <div className="order-lg-last ms-auto ms-lg-2 me-2 me-lg-0">
+            <AccentPicker />
+          </div>
+
           <button
             className={`ql-toggler navbar-toggler border-0 ${open ? 'open' : ''}`}
             type="button"
