@@ -1,5 +1,5 @@
 /*
- * QFlow soft theme – light, calm colours with clear accents.
+ * QFlow soft theme is required – light, calm colours with clear accents.
  * Loaded last (see main.jsx) so it overrides index.css variables, Bootstrap and older page styles.
  *
  * Palette
@@ -9,7 +9,7 @@
  *   surface  #f7f8fc page, #ffffff cards, #e6e8f3 borders, #1f2544 text, #6b7280 muted
  */
 
-:root {
+:root {`
   --brand: #6366f1;
   --brand-hover: #4f46e5;
   --brand-rgb: 99, 102, 241;
