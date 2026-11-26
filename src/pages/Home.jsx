@@ -116,7 +116,7 @@ const [loadingLiveStats, setLoadingLiveStats] = useState(true);
             Your Time is Valuable. <span className="text-highlight">Don't Waste It in Queues.</span>
           </h1>
           <p className="lead mt-3 animate__animated animate__fadeInUp animate__delay-1s">
-            QueueLess provides a seamless way to book tokens, track queues, and get notified when it's your turn.
+            QFlow provides a seamless way to book tokens, track queues, and get notified when it's your turn.
           </p>
           <div className="hero-buttons mt-4 animate__animated animate__zoomIn animate__delay-2s">
             <Button size="lg" variant="light" className="me-3 shadow-sm" onClick={handleGetStarted}>
@@ -139,7 +139,7 @@ const [loadingLiveStats, setLoadingLiveStats] = useState(true);
       {/* Features Section */}
       <AnimatedSection className="features-section py-5">
         <div className="container">
-          <h2 className="text-center fw-bold mb-5 section-title">Why Choose QueueLess?</h2>
+          <h2 className="text-center fw-bold mb-5 section-title">Why Choose QFlow?</h2>
           <div className="row g-4">
             <div className="col-md-4">
               <div className="feature-card h-100 text-center p-4">
@@ -331,7 +331,7 @@ const [loadingLiveStats, setLoadingLiveStats] = useState(true);
           <h2 className="text-center fw-bold mb-5 section-title">How It Works</h2>
           <div className="row align-items-center">
             <div className="col-md-6">
-              <img src="/queueless-how-it-work.png" alt="How it works" className="img-fluid rounded-4 shadow" />
+              <img src="/qflow-how-it-works.png" alt="How it works" className="img-fluid rounded-4 shadow" />
             </div>
             <div className="col-md-6">
               <div className="step-item d-flex mb-4">
@@ -409,13 +409,13 @@ const [loadingLiveStats, setLoadingLiveStats] = useState(true);
           <div className="row align-items-center">
             <div className="col-md-8">
               <h2 className="fw-bold mb-3">Are you a business owner?</h2>
-              <p className="lead mb-4">Join QueueLess as a provider or admin and streamline your customer flow.</p>
+              <p className="lead mb-4">Join QFlow as a provider or admin and streamline your customer flow.</p>
               {!token ? (
                 <>
                   <Button variant="primary" size="lg" onClick={() => navigate('/pricing')} className="me-3 mb-3">
                     Become an Admin
                   </Button>
-                  <Button variant="outline-primary" size="lg" onClick={() => navigate('/provider-pricing')} className="mb-3">
+                  <Button variant="outline-primary" size="lg" onClick={() => navigate('/become-provider')} className="mb-3">
                     Become a Provider
                   </Button>
                 </>

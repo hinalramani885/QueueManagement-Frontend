@@ -1,9 +1,9 @@
 /* PlanCheckout – shared pricing / checkout page for admin and provider tokens */
 
 .plan-checkout {
-  --pc-accent: #6d28d9;
-  --pc-accent-2: #db2777;
-  --pc-accent-rgb: 109, 40, 217;
+  --pc-accent: #6366f1;
+  --pc-accent-2: #8b5cf6;
+  --pc-accent-rgb: 99, 102, 241;
   --pc-surface: rgba(255, 255, 255, 0.78);
   --pc-surface-solid: #ffffff;
   --pc-border: rgba(15, 23, 42, 0.08);
@@ -20,14 +20,14 @@
   color: var(--pc-text);
   background:
     radial-gradient(1200px 500px at 10% -10%, rgba(var(--pc-accent-rgb), 0.10), transparent 60%),
-    radial-gradient(900px 500px at 110% 10%, rgba(219, 39, 119, 0.08), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgba(20, 184, 166, 0.08), transparent 60%),
     var(--bg-primary);
 }
 
 .plan-checkout--provider {
-  --pc-accent: #0d9488;
-  --pc-accent-2: #2563eb;
-  --pc-accent-rgb: 13, 148, 136;
+  --pc-accent: #14b8a6;
+  --pc-accent-2: #6366f1;
+  --pc-accent-rgb: 20, 184, 166;
 }
 
 .dark-mode .plan-checkout {
@@ -650,3 +650,48 @@
 .pc-upi-how span { display: block; font-size: 0.8rem; color: var(--pc-muted); line-height: 1.45; }
 .pc-optional { font-weight: 500; color: var(--pc-muted); font-size: 0.78rem; }
 .pc-test-hint a { color: var(--pc-accent); font-weight: 600; }
+
+/* ---------- Place picker ("Be a Provider") ---------- */
+.pc-places {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-height: 260px;
+  margin-top: 0.6rem;
+  padding: 0.25rem;
+  overflow-y: auto;
+  border-radius: 14px;
+}
+
+.pc-places-empty {
+  padding: 0.9rem;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--pc-muted);
+  background: var(--pc-input-bg);
+}
+
+.pc-place {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 2px solid var(--pc-border);
+  border-radius: 14px;
+  background: var(--pc-input-bg);
+  color: var(--pc-text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.pc-place > i:first-child { color: var(--pc-accent); font-size: 1.1rem; }
+.pc-place-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.pc-place-text strong { font-size: 0.92rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-place-text small { font-size: 0.75rem; color: var(--pc-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-place:hover { border-color: rgba(var(--pc-accent-rgb), 0.45); }
+.pc-place:active { transform: scale(0.99); }
+.pc-place.is-selected { border-color: var(--pc-accent); background: rgba(var(--pc-accent-rgb), 0.08); }
+.pc-place-check { color: var(--pc-accent); animation: pc-pop 0.3s ease; }

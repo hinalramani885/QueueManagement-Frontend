@@ -113,15 +113,15 @@ const Documentation = () => {
                     <main className="doc-main">
                         {/* Introduction */}
                         <section id="introduction" className="doc-section">
-                            <h1>QueueLess - Complete Documentation</h1>
+                            <h1>QFlow - Complete Documentation</h1>
                             <p className="lead">
-                                Welcome to the QueueLess documentation. This guide covers everything you need to know to integrate,
-                                use, and extend the QueueLess queue management system.
+                                Welcome to the QFlow documentation. This guide covers everything you need to know to integrate,
+                                use, and extend the QFlow queue management system.
                             </p>
                             <div className="doc-card">
                                 <h2>1. Introduction</h2>
                                 <p>
-                                    QueueLess is a comprehensive queue management platform designed for businesses, hospitals,
+                                    QFlow is a comprehensive queue management platform designed for businesses, hospitals,
                                     banks, and any service that requires managing customer flow. It offers real‑time queue
                                     updates, role‑based access, notifications, analytics, and much more.
                                 </p>
@@ -154,11 +154,11 @@ const Documentation = () => {
                                 </ul>
                                 <h5>Installation</h5>
                                 <CodeBlock
-                                    code={`git clone https://github.com/harman-04/QueueLess.git
-cd QueueLess/backend/backend
-./mvnw clean install
-cd ..
-cd ../frontend/queue-less-frontend
+                                    code={`git clone https://github.com/hinalramani885/QueueManagement-Backend.git
+git clone https://github.com/hinalramani885/QueueManagement-Frontend.git
+cd QueueManagement-Backend
+mvn clean install
+cd ../QueueManagement-Frontend
 npm install`}
                                     index={0}
                                 />
@@ -171,7 +171,7 @@ npm install`}
                             <div className="doc-card">
                                 <h2>3. Authentication</h2>
                                 <p>
-                                    QueueLess uses JWT (JSON Web Tokens) for authentication. After a successful login, the server
+                                    QFlow uses JWT (JSON Web Tokens) for authentication. After a successful login, the server
                                     returns a token that must be included in the <code>Authorization</code> header of subsequent requests.
                                 </p>
                                 <h5>Register</h5>
@@ -267,7 +267,7 @@ Content-Type: application/json
                             <div className="doc-card">
                                 <h2>5. WebSocket Real‑Time Updates</h2>
                                 <p>
-                                    QueueLess uses STOMP over SockJS to push live updates to clients. The WebSocket endpoint is <code>/ws</code>.
+                                    QFlow uses STOMP over SockJS to push live updates to clients. The WebSocket endpoint is <code>/ws</code>.
                                     The connection requires a valid JWT token passed in the <code>Authorization</code> header during the initial handshake.
                                 </p>
                                 <h5>Connection Example (JavaScript)</h5>
@@ -469,7 +469,7 @@ client.activate();`}
                         <section id="deployment" className="doc-section">
                             <div className="doc-card">
                                 <h2>13. Deployment</h2>
-                                <p>QueueLess can be deployed using Docker Compose for a full stack or manually.</p>
+                                <p>QFlow can be deployed using Docker Compose for a full stack or manually.</p>
                                 <h5>Docker Compose</h5>
                                 <CodeBlock
                                     code={`docker-compose up -d`}
@@ -536,7 +536,7 @@ client.activate();`}
                                 </div>
                                 <div className="faq-item">
                                     <h5>How do I get support?</h5>
-                                    <p>For bugs or feature requests, please open an issue on GitHub. For urgent matters, contact support@queueless.com.</p>
+                                    <p>For bugs or feature requests, please open an issue on GitHub. For urgent matters, contact support@qflow.com.</p>
                                 </div>
                             </div>
                         </section>

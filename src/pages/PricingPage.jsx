@@ -7,7 +7,7 @@ const plans = [
     price: 100,
     period: 'month',
     icon: 'bi-rocket-takeoff',
-    description: 'Try QueueLess with one month of full admin access.',
+    description: 'Try QFlow with one month of full admin access.',
     features: ['Valid for 1 month', 'Full admin dashboard', 'Places, services and queues', 'Provider management and analytics'],
   },
   {
@@ -43,7 +43,7 @@ const PricingPage = () => (
     plans={plans}
     emailLabel="Admin email (used for registration)"
     allowedDomains={TRUSTED_DOMAINS}
-    checkoutName="QueueLess Admin Access"
+    checkoutName="QFlow Admin Access"
     checkoutDescription="Admin registration token"
     confirmEndpoint="/payment/confirm"
   />

@@ -1,6 +1,6 @@
-# QueueLess – Frontend
+# QFlow – Frontend
 
-React + Vite frontend for the QueueLess queue management system.
+React + Vite frontend for the QFlow queue management system.
 The backend (Spring Boot) lives in the `QueueManagement-Backend` repository and runs on port **8081**.
 
 ## Run on your computer
@@ -38,7 +38,7 @@ Camera (QR scanner) and push notifications require HTTPS, which is why the dev s
 2. Run `npm run dev` and note the **Network** address it prints, e.g. `https://192.168.29.48:5173`.
 3. **Install the development certificate on the phone once:**
    - Open `https://<computer-IP>:5173/dev-ca.crt` on the phone. The browser warns about the
-     connection the first time – choose *Advanced → Proceed* to download `queueless-dev-ca.crt`.
+     connection the first time – choose *Advanced → Proceed* to download `qflow-dev-ca.crt`.
    - **Android:** Settings → Security (or "Security & privacy") → More security settings →
      Encryption & credentials → **Install a certificate → CA certificate** → pick the downloaded file.
    - **iPhone:** after downloading, open Settings → *Profile Downloaded* → **Install**.

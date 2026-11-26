@@ -75,11 +75,25 @@ export const fetchServicesByPlace = createAsyncThunk(
   }
 );
 
+/** All services under the logged-in ADMIN's places, including provider-created ones. */
+export const fetchAdminServices = createAsyncThunk(
+  'services/fetchAdmin',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await serviceService.getAdminServices();
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 const serviceSlice = createSlice({
   name: 'services',
   initialState: {
     items: [],
     servicesByPlace: {},
+    adminServices: { items: [], loading: false, error: null },
     currentService: null,
     loading: false,
     error: null
@@ -129,6 +143,22 @@ const serviceSlice = createSlice({
       })
       .addCase(deleteService.fulfilled, (state, action) => {
         state.items = state.items.filter(item => item.id !== action.payload);
+        state.adminServices.items = state.adminServices.items.filter(item => item.id !== action.payload);
+      })
+      .addCase(fetchAdminServices.pending, (state) => {
+        state.adminServices.loading = true;
+        state.adminServices.error = null;
+      })
+      .addCase(fetchAdminServices.fulfilled, (state, action) => {
+        state.adminServices.loading = false;
+        state.adminServices.items = action.payload;
+      })
+      .addCase(fetchAdminServices.rejected, (state, action) => {
+        state.adminServices.loading = false;
+        state.adminServices.error = action.payload;
+      })
+      .addCase(fetchServicesByPlace.rejected, (state, action) => {
+        state.error = action.payload;
       })
       .addCase(fetchServicesByPlace.fulfilled, (state, action) => {
         state.servicesByPlace[action.payload.placeId] = action.payload.services;

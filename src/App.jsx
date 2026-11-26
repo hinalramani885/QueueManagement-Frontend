@@ -12,6 +12,7 @@ import VerifyOtp from './pages/VerifyOtp';
 import ResetPassword from './pages/ResetPassword';
 import PricingPage from './pages/PricingPage';
 import ProviderPricingPage from './pages/ProviderPricingPage';
+import BecomeProviderPage from './pages/BecomeProviderPage';
 import AdminDashboard from './pages/AdminDashboard';
 import ProviderDashboard from './pages/ProviderDashboard';
 import ProviderQueueManagement from './components/ProviderQueueManagement';
@@ -126,6 +127,7 @@ function App() {
             <Route path="/verify-otp" element={<VerifyOtp />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/become-provider" element={<BecomeProviderPage />} />
             <Route path="/customer/queue/:queueId" element={<CustomerQueue />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/documentation" element={<Documentation />} />
@@ -172,6 +174,28 @@ function App() {
             } />
 
             <Route path="/provider/dashboard" element={<Navigate to="/provider/queues" />} />
+
+            {/* Provider places & services (same screens as admin; ownership is enforced by the API) */}
+            <Route path="/provider/places" element={
+              <ProtectedRoute allowedRoles={['PROVIDER']}>
+                <AdminPlaces />
+              </ProtectedRoute>
+            } />
+            <Route path="/provider/places/new" element={
+              <ProtectedRoute allowedRoles={['PROVIDER']}>
+                <PlaceForm />
+              </ProtectedRoute>
+            } />
+            <Route path="/provider/places/edit/:id" element={
+              <ProtectedRoute allowedRoles={['PROVIDER']}>
+                <PlaceForm />
+              </ProtectedRoute>
+            } />
+            <Route path="/provider/places/:placeId/services" element={
+              <ProtectedRoute allowedRoles={['PROVIDER']}>
+                <ServiceManagement />
+              </ProtectedRoute>
+            } />
 
             <Route path="/admin/dashboard" element={
               <ProtectedRoute allowedRoles={['ADMIN']}>

@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { registerSchema } from '../validation/authSchema';
 import { authService } from '../services/authService';
 import AuthFormWrapper from '../components/AuthFormWrapper';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,19 +16,23 @@ import './Register.css';
 
 const Register = () => {
   const navigate = useNavigate();
-  const [role, setRole] = useState('USER');
+  // Pricing pages link here with ?role=&token=&email=&placeId= so the buyer does not retype them
+  const [searchParams] = useSearchParams();
+  const roleParam = searchParams.get('role');
+  const initialRole = roleParam === 'ADMIN' || roleParam === 'PROVIDER' ? roleParam : 'USER';
+  const [role, setRole] = useState(initialRole);
   const [showPreferences, setShowPreferences] = useState(false);
   const [showPassword, setShowPassword] = useState(false); // State for password visibility
 
   const { values, errors, touched, handleChange, handleSubmit } = useFormik({
     initialValues: {
       name: '',
-      email: '',
+      email: searchParams.get('email') || '',
       phoneNumber: '',
       password: '',
-      role: 'USER',
-      token: '',
-      placeId: '',
+      role: initialRole,
+      token: searchParams.get('token') || '',
+      placeId: searchParams.get('placeId') || '',
       preferences: {
         emailNotifications: true,
         smsNotifications: false,

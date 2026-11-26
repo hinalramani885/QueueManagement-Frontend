@@ -22,7 +22,8 @@ const Footer = () => {
       <div className="footer-container">
         {/* Brand Section */}
         <div className="footer-brand">
-          <h2 className="brand-name">Queue<span>Less</span></h2>
+          <img src="/qflow-logo.png" alt="QFlow" className="footer-logo" width="120" height="123" />
+          <h2 className="brand-name visually-hidden">QFlow</h2>
           <p className="brand-tagline">
             Making your waiting experience simple, smart, and seamless.
           </p>
@@ -52,17 +53,11 @@ const Footer = () => {
               <i className="fas fa-phone-alt"></i> +1 (555) 123-4567
             </span> */}
           </div>
-          <h4 className="mt-3">Follow Us</h4>
-          <div className="social-icons">
-            <a href="https://github.com/harman-04" className="social-icon" target="_blank"><i className="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/harmandeep700" target="_blank" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
-
-          </div>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} <strong>QueueLess</strong>. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} <strong>QFlow</strong>. All rights reserved.</p>
         <small>Crafted with ❤️ for a smoother queuing experience.</small>
       </div>
 

@@ -47,7 +47,7 @@ const ProviderPricingPage = () => {
       plans={plans}
       emailLabel="Provider's email (used for registration)"
       allowedDomains={TRUSTED_DOMAINS}
-      checkoutName="QueueLess Provider Token"
+      checkoutName="QFlow Provider Token"
       checkoutDescription="Provider registration token"
       confirmEndpoint="/payment/confirm-provider"
       adminId={adminId}

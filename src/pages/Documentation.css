@@ -115,7 +115,7 @@ Documentation.css – Premium styling, fully scoped to .documentation-page
 .documentation-page .doc-section h1 {
     font-size: 2.5rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--search-primary), #4a6fdc);
+    background: linear-gradient(135deg, var(--search-primary), var(--brand, #6366f1));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

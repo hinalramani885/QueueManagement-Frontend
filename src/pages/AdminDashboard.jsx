@@ -24,6 +24,7 @@ import BusiestHoursChart from '../components/BusiestHoursChart';
 import ProviderLeaderboard from '../components/ProviderLeaderboard';
 import AlertConfigModal from '../components/AlertConfigModal';
 import PlaceMap from '../components/PlaceMap';
+import CatalogTables from '../components/catalog/CatalogTables';
 import QueuesTableSkeleton from '../components/QueuesTableSkeleton'; // <-- import skeleton
 
 const AdminDashboard = () => {
@@ -454,6 +455,11 @@ const AdminDashboard = () => {
               </Card.Body>
             </Card>
           </Tab>
+          <Tab eventKey="catalog" title={<span><i className="bi bi-buildings me-2" /> Places &amp; Services</span>}>
+            {/* Includes places and services created by this admin's providers, with a "Created by" column */}
+            {activeTab === 'catalog' && <CatalogTables />}
+          </Tab>
+
           <Tab eventKey="providers" title={<span><FaUserTie className="me-2" /> Providers</span>}>
             <Card className="dashboard-card">
               <Card.Header className="d-flex flex-column flex-md-row justify-content-between align-items-md-center card-header-styled">

@@ -22,7 +22,7 @@ messaging.onBackgroundMessage((payload) => {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: 'https://localhost:5173/queueless-logo.png',
+    icon: '/qflow-mark.png',
     data: payload.data,
   };
   self.registration.showNotification(notificationTitle, notificationOptions);
