@@ -1,4 +1,4 @@
-Documentation.css – Premium styling, fully scoped to .documentation-page
+/* Documentation.css – Premium styling, fully scoped to .documentation-page */
 
 .documentation-page {
     background-color: var(--bg-primary);
@@ -256,4 +256,92 @@ Documentation.css – Premium styling, fully scoped to .documentation-page
 }
 .dark-mode .documentation-page .lead {
     color: var(--text-primary) !important;
+}
+/* ===== Content from the database: searchable table of contents ===== */
+.documentation-page .toc-card {
+  padding: 1rem;
+  border-radius: 20px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.72));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.6));
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.documentation-page .toc-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+  padding: 0 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--input-bg);
+}
+
+.documentation-page .toc-search i { color: var(--text-secondary); }
+
+.documentation-page .toc-search input {
+  flex: 1;
+  min-width: 0;
+  min-height: 40px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.documentation-page .toc-list { display: flex; flex-direction: column; gap: 2px; max-height: 65vh; overflow-y: auto; }
+
+.documentation-page .toc-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+
+.documentation-page .toc-item:hover { color: var(--text-primary); background: rgba(var(--brand-rgb, 99, 102, 241), 0.06); }
+
+.documentation-page .toc-item.active {
+  color: var(--brand, #6366f1);
+  font-weight: 700;
+  background: rgba(var(--brand-rgb, 99, 102, 241), 0.1);
+}
+
+.documentation-page .toc-num,
+.documentation-page .doc-num {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--brand, #6366f1);
+  background: rgba(var(--brand-rgb, 99, 102, 241), 0.12);
+}
+
+.documentation-page .doc-num { min-width: 32px; height: 32px; font-size: 0.9rem; margin-right: 0.4rem; vertical-align: middle; }
+
+.documentation-page .doc-card {
+  border-radius: 22px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.72));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.6));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.documentation-page .doc-section { scroll-margin-top: 90px; }
+
+@media (max-width: 991.98px) {
+  .documentation-page .toc-list { max-height: 240px; }
 }

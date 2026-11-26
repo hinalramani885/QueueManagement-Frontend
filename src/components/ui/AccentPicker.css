@@ -1,0 +1,54 @@
+.qf-accent-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 40px;
+  padding: 0 0.6rem;
+  border-radius: 12px;
+  border: 1px solid rgba(var(--brand-rgb, 99, 102, 241), 0.25);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink, #1f2544);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dark-mode .qf-accent-toggle { background: rgba(255, 255, 255, 0.06); color: #e8eaf6; }
+.qf-accent-toggle::after { display: none; }
+.qf-accent-toggle:hover { transform: translateY(-1px); box-shadow: 0 8px 18px -10px rgba(var(--brand-rgb, 99, 102, 241), 0.8); }
+
+.qf-accent-dot { width: 16px; height: 16px; border-radius: 50%; box-shadow: 0 0 0 2px #fff; }
+
+.qf-accent-menu { min-width: 240px; padding: 0.75rem; border-radius: 18px !important; }
+.qf-accent-title { margin: 0 0 0.6rem 0.2rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); }
+
+.qf-accent-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem; }
+
+.qf-accent-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.1rem;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.qf-accent-option:hover { background: rgba(var(--brand-rgb, 99, 102, 241), 0.08); }
+.qf-accent-option.is-active { color: var(--text-primary); }
+
+.qf-accent-swatch {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #fff;
+  box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s;
+}
+
+.qf-accent-option:hover .qf-accent-swatch { transform: scale(1.1); }
+.qf-accent-option.is-active .qf-accent-swatch { box-shadow: 0 0 0 3px #fff, 0 0 0 5px rgba(var(--brand-rgb, 99, 102, 241), 0.7); }

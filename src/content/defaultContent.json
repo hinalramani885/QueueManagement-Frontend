@@ -1,0 +1,262 @@
+{
+  "privacy-policy": {
+    "title": "Privacy Policy",
+    "subtitle": "How QFlow collects, uses and protects your information.",
+    "sections": [
+      {
+        "id": "information-we-collect",
+        "title": "Information We Collect",
+        "body": "QFlow collects the following types of information:\n\n-   **Account Information:** Name, email address, phone number, password (hashed).\n-   **Profile Information:** Profile picture (optional), preferences (notification settings, language, etc.).\n-   **Queue Data:** Tokens you join, positions, wait times, feedback you provide.\n-   **Location Data:** When you search for nearby places, we may use your device’s location (with your consent).\n-   **Payment Information:** When you purchase admin or provider tokens, Razorpay processes the payment; we do not store credit card details.\n-   **Device Information:** IP address, browser type, device tokens for push notifications.\n-   **Cookies & Similar Technologies:** We use cookies to remember your login state and preferences."
+      },
+      {
+        "id": "how-we-use-your-information",
+        "title": "How We Use Your Information",
+        "body": "We use the information we collect to:\n\n-   Create and manage your account.\n-   Allow you to join queues, track your position, and receive notifications.\n-   Process payments via Razorpay.\n-   Send important service emails (verification, password reset, queue updates).\n-   Analyze usage patterns to improve our services (e.g., wait time predictions, popular places).\n-   Prevent fraud, enforce our terms, and comply with legal obligations."
+      },
+      {
+        "id": "sharing-of-information",
+        "title": "Sharing of Information",
+        "body": "We do not sell your personal information. We may share data with:\n\n-   **Service Providers:** Razorpay (payments), Firebase (push notifications), SendGrid/SMTP (emails), MongoDB Atlas (database hosting).\n-   **Business Partners:** When you join a queue, the provider and admin of that place will see your token and any details you provide (purpose, condition) according to your privacy settings.\n-   **Legal Authorities:** If required by law or to protect our rights."
+      },
+      {
+        "id": "data-security",
+        "title": "Data Security",
+        "body": "We implement industry‑standard security measures:\n\n-   Passwords are hashed using BCrypt.\n-   All data is transmitted over HTTPS (TLS).\n-   Access to production data is restricted to authorized personnel.\n-   Regular security audits and vulnerability scanning.\n\nHowever, no method of transmission over the internet is 100% secure. We encourage you to use strong, unique passwords and to keep your account credentials confidential."
+      },
+      {
+        "id": "your-rights-and-choices",
+        "title": "Your Rights and Choices",
+        "body": "Depending on your location, you may have the following rights:\n\n-   **Access:** Request a copy of your personal data.\n-   **Correction:** Update your profile information.\n-   **Deletion:** Delete your account and associated data (from your profile page).\n-   **Opt‑out:** Disable email or push notifications in your preferences.\n-   **Data Portability:** Export your token history.\n\nTo exercise these rights, contact us at [{{SUPPORT_EMAIL}}](mailto:{{SUPPORT_EMAIL}})."
+      },
+      {
+        "id": "data-retention",
+        "title": "Data Retention",
+        "body": "We retain your data as long as your account is active. If you delete your account, your personal information is removed from our active databases within 30 days. Anonymized statistical data (e.g., aggregated wait times) may be kept indefinitely. OTPs and temporary tokens are automatically deleted after expiration."
+      },
+      {
+        "id": "children-s-privacy",
+        "title": "Children's Privacy",
+        "body": "QFlow is not intended for children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with data, please contact us to have it removed."
+      },
+      {
+        "id": "changes-to-this-policy",
+        "title": "Changes to This Policy",
+        "body": "We may update this policy from time to time. We will notify you of material changes via email or a prominent notice on the website. Continued use after changes indicates acceptance of the updated policy."
+      },
+      {
+        "id": "contact-us",
+        "title": "Contact Us",
+        "body": "If you have any questions about this Privacy Policy, please contact us:\n\n-   Email: [{{SUPPORT_EMAIL}}](mailto:{{SUPPORT_EMAIL}})\n-   Address: \\[Your Business Address\\]"
+      }
+    ]
+  },
+  "terms-of-service": {
+    "title": "Terms of Service",
+    "subtitle": "The rules for using QFlow.",
+    "sections": [
+      {
+        "id": "acceptance-of-terms",
+        "title": "Acceptance of Terms",
+        "body": "By accessing or using QFlow, you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service."
+      },
+      {
+        "id": "description-of-service",
+        "title": "Description of Service",
+        "body": "QFlow provides a digital queue management system that allows users to join queues, providers to manage service flow, and administrators to oversee multiple locations. The Service includes a website, mobile‑optimized interface, and APIs."
+      },
+      {
+        "id": "user-accounts",
+        "title": "User Accounts",
+        "body": "You must be at least 13 years old to create an account. You are responsible for maintaining the confidentiality of your login credentials. You agree to notify us immediately of any unauthorized use of your account.\n\nWe reserve the right to suspend or terminate accounts that violate these terms or engage in abusive behavior (e.g., spamming, attempting to manipulate queues)."
+      },
+      {
+        "id": "purchases-and-payments",
+        "title": "Purchases and Payments",
+        "body": "Admins and providers may purchase tokens through Razorpay. All payments are final and non‑refundable. Tokens expire according to the purchased plan (1 month, 1 year, lifetime).\n\nBy providing a payment method, you authorize us to charge the applicable fees. Razorpay handles all payment processing; we do not store your credit card information."
+      },
+      {
+        "id": "user-conduct",
+        "title": "User Conduct",
+        "body": "You agree not to:\n\n-   Use the Service for any illegal purpose.\n-   Interfere with or disrupt the Service or servers.\n-   Attempt to gain unauthorized access to other accounts.\n-   Submit false or misleading information.\n-   Harass other users or providers.\n\nViolations may result in immediate suspension or termination of your account."
+      },
+      {
+        "id": "intellectual-property",
+        "title": "Intellectual Property",
+        "body": "All content, logos, and code are the property of QFlow or its licensors. You may not copy, modify, or distribute any part of the Service without written permission.\n\nYou retain ownership of the content you submit (e.g., feedback, profile information), but grant QFlow a worldwide, royalty‑free license to use, store, and display that content in connection with the Service."
+      },
+      {
+        "id": "disclaimer-of-warranties",
+        "title": "Disclaimer of Warranties",
+        "body": "The Service is provided \"as is\" without warranties of any kind, either express or implied. We do not guarantee that the Service will be uninterrupted, error‑free, or secure. Your use is at your own risk."
+      },
+      {
+        "id": "limitation-of-liability",
+        "title": "Limitation of Liability",
+        "body": "To the fullest extent permitted by law, QFlow and its affiliates shall not be liable for any indirect, incidental, or consequential damages arising out of your use of the Service. Our total liability shall not exceed the amount you paid us, if any, in the past 12 months."
+      },
+      {
+        "id": "indemnification",
+        "title": "Indemnification",
+        "body": "You agree to indemnify and hold QFlow harmless from any claims, damages, or expenses arising from your use of the Service or violation of these Terms."
+      },
+      {
+        "id": "termination",
+        "title": "Termination",
+        "body": "We may suspend or terminate your access at any time, with or without cause, with or without notice. Upon termination, your right to use the Service will cease immediately. You may delete your account at any time from your profile page."
+      },
+      {
+        "id": "governing-law",
+        "title": "Governing Law",
+        "body": "These Terms shall be governed by the laws of India, without regard to its conflict of law provisions."
+      },
+      {
+        "id": "changes-to-terms",
+        "title": "Changes to Terms",
+        "body": "We may update these Terms from time to time. We will notify you of material changes via email or a notice on the website. Continued use after changes constitutes acceptance."
+      },
+      {
+        "id": "contact",
+        "title": "Contact",
+        "body": "If you have any questions about these Terms, please contact us at [{{SUPPORT_EMAIL}}](mailto:{{SUPPORT_EMAIL}})."
+      }
+    ]
+  },
+  "documentation": {
+    "title": "QFlow - Complete Documentation",
+    "subtitle": "Welcome to the QFlow documentation. This guide covers everything you need to know to integrate, use, and extend the QFlow queue management system.",
+    "sections": [
+      {
+        "id": "introduction",
+        "title": "Introduction",
+        "body": "QFlow is a comprehensive queue management platform designed for businesses, hospitals, banks, and any service that requires managing customer flow. It offers real‑time queue updates, role‑based access, notifications, analytics, and much more.\n\nThe system is built with a Spring Boot backend and a React frontend, communicating via REST APIs and WebSocket for live updates. It supports three user roles: **USER**,**PROVIDER**, and **ADMIN**.\n\n-   **USER** – can search places, join queues, receive notifications, provide feedback.\n-   **PROVIDER** – manages queues, serves tokens, handles emergency approvals.\n-   **ADMIN** – oversees places, services, providers, and views analytics."
+      },
+      {
+        "id": "getting-started",
+        "title": "Getting Started",
+        "body": "### Prerequisites\n\n-   Java 25+\n-   Node.js 20+\n-   MongoDB (local or Atlas)\n-   Redis (for caching)\n-   Razorpay account (for payments)\n-   Firebase project (for push notifications)\n-   SMTP server (e.g., Gmail)\n\n### Installation\n\n```\ngit clone https://github.com/hinalramani885/QueueManagement-Backend.git\ngit clone https://github.com/hinalramani885/QueueManagement-Frontend.git\ncd QueueManagement-Backend\nmvn clean install\ncd ../QueueManagement-Frontend\nnpm install\n```\n\nConfigure environment variables as described in the README, then run both services."
+      },
+      {
+        "id": "authentication",
+        "title": "Authentication",
+        "body": "QFlow uses JWT (JSON Web Tokens) for authentication. After a successful login, the server returns a token that must be included in the `Authorization` header of subsequent requests.\n\n### Register\n\n```\nPOST /api/auth/register\nContent-Type: application/json\n\n{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"Password123\",\n  \"phoneNumber\": \"+1234567890\",\n  \"role\": \"USER\"\n}\n```\n\nFor **ADMIN** or **PROVIDER** roles, a valid purchase token is required (see Payments section).\n\n### Login\n\n```\nPOST /api/auth/login\n{\n  \"email\": \"john@example.com\",\n  \"password\": \"Password123\"\n}\n```\n\nResponse includes the JWT token and user details.\n\n### Email Verification\n\nAfter registration, an OTP is sent to the user’s email. Verify with:\n\n```\nPOST /api/auth/verify-email\n{\n  \"email\": \"john@example.com\",\n  \"otp\": \"123456\"\n}\n```\n\nAll endpoints except public ones require the JWT token."
+      },
+      {
+        "id": "api-reference",
+        "title": "API Reference",
+        "body": "Full API documentation is available via Swagger UI at `/swagger-ui.html` when the backend is running.\n\nBelow are key endpoints grouped by functionality.\n\n### Places\n\n-   `GET /api/places` – get all places (public).\n-   `POST /api/places` – create a place (admin or provider).\n-   `GET /api/places/{id}` – get place details.\n-   `PUT /api/places/{id}` – update place (owning admin, or the provider who created it / is assigned to it).\n-   `DELETE /api/places/{id}` – delete place (same rules as update).\n-   `GET /api/places/nearby?longitude=&latitude=&radius=` – find places within radius.\n\n### Queues\n\n-   `POST /api/queues/create` – create a queue (provider).\n-   `/api/queues/{queueId}/add-token` – join a queue (user).\n-   `/api/queues/{queueId}/add-group-token` – join with group (user).\n-   `/api/queues/{queueId}/add-emergency-token` – request emergency token (user).\n-   `/api/queues/{queueId}/serve-next` – serve next token (provider).\n-   `/api/queues/{queueId}/complete-token` – mark token as completed (provider).\n-   `/api/queues/{queueId}/cancel-token/{tokenId}` – cancel token (user/provider).\n-   `/api/queues/{queueId}/activate` – activate queue (provider).\n-   `/api/queues/{queueId}/deactivate` – deactivate queue (provider).\n\n### Search\n\n-   `POST /api/search/comprehensive` – advanced search with filters.\n-   `POST /api/search/nearby` – search by location.\n-   `/api/search/quick/{query}` – quick search with limit.\n\n### Admin\n\n-   `GET /api/admin/stats` – dashboard statistics.\n-   `GET /api/admin/providers` – list of providers with performance data.\n-   `/api/admin/providers/{providerId}` – provider details.\n-   `/api/admin/providers/{providerId}` – update provider.\n-   `/api/admin/providers/{providerId}/status?active=` – enable/disable provider.\n-   `/api/admin/providers/{providerId}/reset-password` – send password reset link.\n\n### Content pages\n\n-   `GET /api/content/{slug}` – read an editable page (public). Slugs: `privacy-policy`, `terms-of-service`, `documentation`, `about-us`, `how-to-use`.\n-   `PUT /api/content/{slug}` – save a page (admin).\n-   `DELETE /api/content/{slug}` – delete the saved page so the built-in default text is shown again (admin)."
+      },
+      {
+        "id": "websocket",
+        "title": "WebSocket Real‑Time Updates",
+        "body": "QFlow uses STOMP over SockJS to push live updates to clients. The WebSocket endpoint is `/ws`. The connection requires a valid JWT token passed in the `Authorization` header during the initial handshake.\n\n### Connection Example (JavaScript)\n\n```\nimport { Client } from '@stomp/stompjs';\nimport SockJS from 'sockjs-client';\n\nconst client = new Client({\n  webSocketFactory: () => new SockJS('/ws'),\n  connectHeaders: { Authorization: `Bearer ${token}` },\n  onConnect: () => {\n    console.log('Connected');\n    // Subscribe to a queue\n    client.subscribe('/topic/queues/' + queueId, (message) => {\n      const queue = JSON.parse(message.body);\n      // Update UI\n    });\n  }\n});\nclient.activate();\n```\n\n### Available Destinations\n\n-   `/topic/queues/{queueId}` – queue updates (token added, served, etc.)\n-   `/user/queue/emergency-approved` – emergency token approval/rejection (private).\n-   `/user/queue/token-cancelled` – token cancellation notification (private).\n-   `/user/queue/provider-updates` – provider‑specific updates.\n\n### Sending Commands\n\n-   `/app/queue/serve-next` – serve next token (payload: `{\"queueId\":\"...\"}`).\n-   `/app/queue/add-token` – add a token (payload: `{\"queueId\":\"...\"}`).\n-   `/app/queue/status` – toggle queue active status (payload: queueId string)."
+      },
+      {
+        "id": "notification-preferences",
+        "title": "Notification Preferences",
+        "body": "Users can override global notification settings per queue.\n\n### Endpoints\n\n-   `GET /api/notifications/preferences/my` – get all user preferences.\n-   `/api/notifications/preferences/queue/{queueId}` – get preference for a specific queue.\n-   `/api/notifications/preferences/queue/{queueId}` – create or update a preference.\n-   `/api/notifications/preferences/queue/{queueId}` – delete a preference (revert to global).\n\n### Preference Fields\n\n-   `notifyBeforeMinutes` – minutes before turn to be notified (default 5).\n-   `notifyOnStatusChange` – notify when token status changes (e.g., to IN\\_SERVICE).\n-   `notifyOnEmergencyApproval` – notify when an emergency token is approved/rejected.\n-   `notifyOnBestTime` – receive a daily notification when the queue is short (waiting < 3).\n-   `enabled` – disable all notifications for this queue."
+      },
+      {
+        "id": "feedback",
+        "title": "Feedback System",
+        "body": "After a token is completed, the user can submit feedback with ratings and a comment.\n\n### Submit Feedback\n\n```\nPOST /api/feedback\n{\n  \"tokenId\": \"queue123-T-001\",\n  \"queueId\": \"queue123\",\n  \"rating\": 4,\n  \"comment\": \"Great service\",\n  \"staffRating\": 5,\n  \"serviceRating\": 4,\n  \"waitTimeRating\": 3\n}\n```\n\n### Retrieve Feedback\n\n-   `/api/feedback/place/{placeId}` – all feedback for a place (public).\n-   `/api/feedback/provider/{providerId}` – feedback for a provider (provider/admin).\n-   `/api/feedback/place/{placeId}/detailed-ratings` – average ratings per category.\n-   `GET /api/feedback/recent?limit=5` – recent feedback entries."
+      },
+      {
+        "id": "payments",
+        "title": "Payments & Tokens",
+        "body": "Admins and providers must purchase tokens via Razorpay. After a successful payment, a unique token is generated and sent to the user's email. This token is required during registration for the corresponding role.\n\n### Create Order\n\n```\nPOST /api/payment/create-order?email=admin@example.com&role=ADMIN&tokenType=1_MONTH\n```\n\n### Confirm Payment (Admin)\n\n```\nPOST /api/payment/confirm?orderId={orderId}&paymentId={paymentId}&signature={razorpay_signature}&email=admin@example.com&tokenType=1_MONTH\n```\n\n### Confirm Provider Token (Admin)\n\n```\nPOST /api/payment/confirm-provider?orderId={orderId}&paymentId={paymentId}&signature={razorpay_signature}&providerEmail=provider@example.com&tokenType=1_MONTH\n```\n\nTokens are one‑time use and expire after the purchased period."
+      },
+      {
+        "id": "admin-provider",
+        "title": "Admin & Provider Management",
+        "body": "Admins have full control over providers and their assigned places.\n\n-   **List Providers** – `GET /api/admin/providers` (returns performance data).\n-   **View Details** – `/api/admin/providers/{providerId}` (includes statistics and assigned places).\n-   **Update Provider** – `/api/admin/providers/{providerId}` (edit name, email, phone, managed places, status).\n-   **Enable/Disable** – `/api/admin/providers/{providerId}/status?active=false` (prevents login).\n-   **Reset Password** – `/api/admin/providers/{providerId}/reset-password` (sends a direct reset link).\n\nAdmins can also manage places and services via the respective endpoints."
+      },
+      {
+        "id": "export",
+        "title": "Export Reports",
+        "body": "Providers and admins can export queue data as PDF or Excel.\n\n-   `/api/export/queue/{queueId}/pdf?reportType=tokens&includeUserDetails=false`\n-   `/api/export/queue/{queueId}/excel?reportType=statistics`\n-   `/api/export/exports` – list previously generated exports (cached).\n-   `/api/export/exports/{exportId}` – download a cached export.\n\nReport types: `tokens` (list of tokens), `statistics` (aggregated metrics), `full` (both)."
+      },
+      {
+        "id": "error-handling",
+        "title": "Error Handling",
+        "body": "The API returns consistent error responses with the following structure:\n\n```\n{\n  \"status\": 400,\n  \"error\": \"Bad Request\",\n  \"message\": \"Human‑readable error description\",\n  \"path\": \"/api/...\",\n  \"timestamp\": \"2025-01-01T12:00:00\"\n}\n```\n\nCommon HTTP status codes:\n\n-   `200` – OK\n-   `201` – Created\n-   `400` – Bad Request (validation error, business logic)\n-   `401` – Unauthorized (missing or invalid token)\n-   `403` – Forbidden (insufficient role)\n-   `404` – Not Found\n-   `409` – Conflict (e.g., user already in queue)\n-   `429` – Too Many Requests (rate limiting)\n-   `500` – Internal Server Error"
+      },
+      {
+        "id": "rate-limiting",
+        "title": "Rate Limiting",
+        "body": "To prevent abuse, certain endpoints are rate‑limited per user (or IP if unauthenticated). Limits are configurable via `application.properties`.\n\n-   Default: 100 requests per minute.\n-   Token creation endpoints: 10 per minute.\n-   Search endpoints: 50 per minute.\n\nWhen a limit is exceeded, the server responds with `429 Too Many Requests` and includes a `Retry‑After` header."
+      },
+      {
+        "id": "deployment",
+        "title": "Deployment",
+        "body": "QFlow can be deployed using Docker Compose for a full stack or manually.\n\n### Docker Compose\n\n```\ndocker-compose up -d\n```\n\nThis starts the backend, frontend, MongoDB, Redis, Prometheus, Grafana, Loki, and Promtail.\n\n### Manual Deployment\n\n-   Build backend JAR: `mvn clean package`\n-   Run with Java: `java -jar target/backend-*.jar`\n-   Build frontend: `npm run build`\n-   Serve static files with Nginx or similar.\n\nEnsure environment variables are set appropriately for production (use secrets, secure keys)."
+      },
+      {
+        "id": "troubleshooting",
+        "title": "Troubleshooting",
+        "body": "### Backend won't start – MongoDB connection refused\n\nCheck that MongoDB is running and the URI is correct. Use `mongod` to start locally.\n\n### Redis connection errors\n\nInstall Redis and start the server. If not needed, disable caching by adding `spring.cache.type=none` to properties.\n\n### Emails not sending\n\nFor Gmail, use an App Password. Ensure the SMTP settings are correct in `application.properties`.\n\n### Push notifications not working\n\nVerify Firebase project configuration, VAPID key, and that browser permissions are granted.\n\n### File upload fails with 403\n\nEnsure the upload directory exists and is writable. The backend serves static files under `/uploads/**`.\n\n### WebSocket connection fails\n\nCheck that the token is valid and passed in the `Authorization` header. If using self‑signed certificates, browser may block; use a valid certificate or disable SSL in development."
+      },
+      {
+        "id": "faq",
+        "title": "Frequently Asked Questions",
+        "body": "### How do I become an admin?\n\nPurchase an admin token from the [Pricing page](/pricing), then register using that token.\n\n### Can I join multiple queues at the same time?\n\nNo, users can have only one active token at a time across all queues. This prevents abuse and ensures fair usage.\n\n### What is an emergency token?\n\nEmergency tokens allow users to request priority service. Providers must approve or reject the request based on the details provided.\n\n### How are wait times calculated?\n\nThe estimated wait time is (number of waiting tokens) × (average service time of the service). Average service time is set by the admin when creating the service.\n\n### Can I reset a queue?\n\nYes, providers can reset a queue. They have the option to preserve data by exporting it before resetting.\n\n### Is there an audit trail?\n\nYes, important actions (registration, login, queue creation, token operations, payments, etc.) are logged in the `audit_logs` collection.\n\n### How do I get support?\n\nFor bugs or feature requests, please open an issue on GitHub. For anything else, contact us at [{{SUPPORT_EMAIL}}](mailto:{{SUPPORT_EMAIL}})."
+      }
+    ]
+  },
+  "about-us": {
+    "title": "About QFlow",
+    "subtitle": "Revolutionizing the way you wait",
+    "sections": [
+      {
+        "id": "our-mission",
+        "title": "Our Mission",
+        "body": "To eliminate the frustration of waiting by providing smart, real‑time queue management that empowers businesses and delights customers.\n\n### The Problem\n\nLong, unpredictable queues waste time, cause stress, and hurt business productivity. Traditional queue systems offer no transparency – customers are left guessing when their turn will come, and businesses lack insight into wait times or customer satisfaction.\n\n### Our Solution\n\nQFlow provides a digital queue management system that works for any business. Customers can join queues remotely, track their position, and get notified when it's almost their turn. Businesses gain real‑time analytics, customer feedback, and the ability to manage multiple locations effortlessly."
+      },
+      {
+        "id": "what-makes-qflow-different",
+        "title": "What Makes QFlow Different",
+        "body": "### Join from Anywhere\n\nNo more standing in line. Join queues using your smartphone, whether you're at home or on the way.\n\n### Real‑time Updates\n\nLive position, estimated wait time, and instant notifications when your turn approaches.\n\n### Powerful Analytics\n\nUnderstand peak hours, average wait times, and customer satisfaction with detailed dashboards.\n\n### QR Code Integration\n\nScan a QR code at any location to join the queue instantly – no app download required.\n\n### Multi‑Tenant Design\n\nOne platform serves hospitals, banks, shops, restaurants, and more. Each business manages its own places and queues.\n\n### Secure & Reliable\n\nEnterprise‑grade security, role‑based access, and audit logging ensure your data is safe."
+      },
+      {
+        "id": "built-with-modern-technology",
+        "title": "Built with Modern Technology",
+        "body": "**Backend**  \nJava 25, Spring Boot 4, MongoDB, Redis\n\n**Frontend**  \nReact 19, Redux Toolkit, Bootstrap, Vite\n\n**Real‑time**  \nWebSocket, STOMP, SockJS\n\n**DevOps**  \nDocker, Prometheus, Grafana, Loki"
+      },
+      {
+        "id": "our-philosophy",
+        "title": "Our Philosophy",
+        "body": "We believe that technology should serve people, not the other way around. QFlow was born from the frustration of waiting in lines and the desire to create a seamless, respectful experience for everyone.\n\nOur team is passionate about open source, transparency, and building tools that make a real difference. We invite you to join our community – whether as a user, a contributor, or a partner."
+      },
+      {
+        "id": "ready-to-transform-your-waiting-experience",
+        "title": "Ready to transform your waiting experience?",
+        "body": "Join the thousands of businesses and customers who trust QFlow.\n\n[Get Started](/register)"
+      }
+    ]
+  },
+  "how-to-use": {
+    "title": "How to Use QFlow",
+    "subtitle": "A complete guide for users, providers, and administrators",
+    "sections": [
+      {
+        "id": "for-users",
+        "title": "For Users",
+        "body": "Join queues, track your position, receive notifications, and provide feedback.\n\n### Finding a Place\n\nUse the search bar or advanced search to find places by name, type, or location. Filter by rating, wait time, or features like group/emergency support.\n\n### Viewing Place Details\n\nClick on a place to see its services, contact info, business hours, and user ratings. You can also add it to your favorites (♥).\n\n### Joining a Queue\n\nChoose a service and click “Join Queue”. You can select:\n\n- **Regular Token** – standard waiting.\n- **Group Token** – for multiple people (if supported).\n- **Emergency Token** – for urgent needs (if supported, may require provider approval).\n\nYou can also provide additional details (purpose, condition) when joining.\n\n### Tracking Your Token\n\nAfter joining, you'll see your token ID, position in the queue, and estimated wait time. You'll receive email and push notifications when your turn is approaching.\n\n### Emergency Token\n\nIf the queue supports emergency tokens, you can request priority. The provider will review your details and approve/reject.\n\n### Notifications\n\nManage your notification preferences per queue from your dashboard. You can choose to be notified:\n\n- Minutes before your turn\n- On status changes (e.g., when token is served)\n- When the queue becomes short (best time to join)\n\n### Providing Feedback\n\nAfter your token is completed, you'll be prompted to rate your experience (overall, staff, service, wait time) and leave a comment.\n\n### Favorites\n\nClick the heart icon on any place to add it to your favorites. Quickly access them from your dashboard.\n\n### User Dashboard\n\nYour dashboard shows active queues, token history, favorite places, and analytics charts. You can also edit your profile and upload a profile picture.\n\n**QR Code Scanning:** Scan a queue's QR code to join instantly."
+      },
+      {
+        "id": "for-providers",
+        "title": "For Providers",
+        "body": "Manage queues, serve tokens, handle emergencies, and view analytics.\n\n### Creating a Queue\n\nFrom the “My Queues” page, select a place and service, set a name, max capacity, and optional features (group tokens, emergency support).\n\n### Managing a Queue\n\nOn your queue dashboard, you can:\n\n- **Serve Next:** Moves the next waiting token to “in service”.\n- **Complete:** Marks the current token as completed (after service).\n- **Cancel:** Remove a waiting token (optionally provide a reason).\n- **Reorder:** Drag and drop waiting tokens to change priority.\n- **Pause/Resume:** Temporarily stop accepting new tokens.\n- **Reset Queue:** Clear all tokens (optionally export data first).\n\n### Emergency Approvals\n\nWhen a user requests an emergency token, you'll receive a notification. You can approve (with priority) or reject (with reason).\n\n### Viewing User Details\n\nFor any token, click “View Details” to see the user's provided information (purpose, condition, notes) – respecting their privacy settings.\n\n### Analytics\n\nAccess token volume charts, busiest hours, and average wait time trends. These help you optimize your service.\n\n### Export Reports\n\nExport queue data as PDF or Excel (tokens only, statistics, or full report). You can also export data before resetting a queue.\n\n### QR Code Generation\n\nGenerate a QR code for your queue. Display it in your physical location so users can scan and join instantly.\n\n### Provider Dashboard\n\nYour dashboard shows all your queues, live statistics, and recent activity. You can also manage your profile and upload a profile picture.\n\n**Note:** Your admin may assign you to specific places. You'll only see queues for those places."
+      },
+      {
+        "id": "for-administrators",
+        "title": "For Administrators",
+        "body": "Create places and services, manage providers, and oversee the entire system.\n\n### Creating a Place\n\nAdd places with name, type, address, location (latitude/longitude), contact info, business hours, and images.\n\n### Managing Services\n\nUnder each place, define services with average service time, group/emergency support flags.\n\n### Provider Management\n\nAdmins can purchase provider tokens (1 month, 1 year, lifetime) and assign them to new providers. You can also:\n\n- **View provider details:** See their profile, assigned places, queue statistics, ratings.\n- **Edit provider:** Update name, email, phone, assigned places.\n- **Toggle status:** Enable/disable a provider's account.\n- **Reset password:** Send a password reset link to the provider's email.\n\n### Analytics\n\nView global token volume trends, busiest hours, and provider performance leaderboards.\n\n### Reports\n\nGenerate comprehensive PDF/Excel reports covering all places, queues, and aggregated statistics.\n\n### Alerts\n\nConfigure email alerts to be notified when any queue exceeds a wait time threshold.\n\n### Geographic Heat Map\n\nView all your places on a map, with markers sized by queue load – useful for spotting busy locations.\n\n### Payment History\n\nTrack all payments made for admin and provider tokens.\n\n### Admin Tokens\n\nAdmins must purchase an admin token (via Razorpay) to register. Tokens are valid for 1 month, 1 year, or lifetime.\n\n**Tip:** Use the “Make Providers” button to bulk‑purchase provider tokens for multiple providers at once."
+      },
+      {
+        "id": "pro-tips",
+        "title": "Pro Tips",
+        "body": "- Enable push notifications in your browser to never miss your turn.\n- Use the “Best Time to Join” feature to avoid peak hours.\n\n- Providers: Display the QR code in your shop for quick user access.\n- Admins: Regularly review provider performance to ensure quality service.\n\n- All users: Update your profile picture for a personalized experience.\n- Check your token history to see past visits and ratings."
+      }
+    ]
+  }
+}

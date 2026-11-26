@@ -1,190 +1,57 @@
-/* HowToUse.css – Premium styling, fully scoped to .how-to-use-page */
+/* How to Use page – sections come from the database (admin-editable) or the defaults */
+.how-to-use-page { min-height: 100vh; }
 
-.how-to-use-page {
-  background-color: var(--bg-primary);
-  min-height: 100vh;
-  padding: 2rem 0;
-}
-
-/* Gradient text for headings */
-.how-to-use-page .gradient-text {
-  background: linear-gradient(135deg, var(--search-primary), var(--accent-color));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  display: inline-block;
+.howto-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Role cards */
-.how-to-use-page .role-card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 24px;
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-.how-to-use-page .role-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--search-primary);
-}
-.how-to-use-page .role-icon {
+.howto-tab {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  transition: all 0.3s ease;
-}
-.how-to-use-page .user-icon {
-  color: var(--link-color);
-}
-.how-to-use-page .provider-icon {
-  color: var(--success-color);
-}
-.how-to-use-page .admin-icon {
-  color: var(--danger-color);
-}
-.how-to-use-page .role-card:hover .role-icon {
-  transform: scale(1.1);
-  background: var(--border-color);
-}
-
-/* Custom Accordion */
-.how-to-use-page .custom-accordion .accordion-item {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  margin-bottom: 1rem;
-  overflow: hidden;
-}
-.how-to-use-page .custom-accordion .accordion-header {
-  background-color: var(--bg-secondary);
-  border-radius: 16px;
-  margin: 0;
-}
-.how-to-use-page .custom-accordion .accordion-button {
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.6));
+  background: var(--glass-bg, rgba(255, 255, 255, 0.72));
+  color: var(--text-secondary);
   font-weight: 600;
-  font-size: 1.2rem;
-  padding: 1.2rem 1.5rem;
-  transition: all 0.2s;
+  backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
 }
-.how-to-use-page .custom-accordion .accordion-button:not(.collapsed) {
-  background-color: var(--bg-secondary);
-  color: var(--search-primary);
-  box-shadow: none;
-}
-.how-to-use-page .custom-accordion .accordion-button:focus {
-  box-shadow: none;
+
+.howto-tab:hover { color: var(--text-primary); transform: translateY(-2px); }
+
+.howto-tab.is-active {
+  color: #fff;
   border-color: transparent;
-}
-.how-to-use-page .custom-accordion .accordion-button::after {
-  filter: invert(var(--dark-mode-invert, 0));
-  transition: transform 0.2s;
-}
-.how-to-use-page .custom-accordion .accordion-body {
-  padding: 1.5rem;
-  color: var(--text-secondary);
-  border-top: 1px solid var(--border-color);
+  background: var(--brand-gradient, linear-gradient(135deg, #6366f1, #8b5cf6));
+  box-shadow: 0 10px 22px -12px rgba(var(--brand-rgb, 99, 102, 241), 0.9);
 }
 
-/* Pro tips card */
-.how-to-use-page .pro-tips-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+.howto-panel {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.75rem;
   border-radius: 24px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.72));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.6));
   box-shadow: var(--shadow-md);
-}
-.how-to-use-page .pro-tips-card .card-body {
-  padding: 2rem;
-}
-.how-to-use-page .pro-tips-card h5 {
-  color: var(--text-primary);
-  font-weight: 700;
-}
-.how-to-use-page .pro-tips-card ul li {
-  color: var(--text-secondary);
-  line-height: 1.5;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: app-fade-up 0.35s ease both;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .how-to-use-page .role-card {
-    margin-bottom: 1.5rem;
-  }
-  .how-to-use-page .custom-accordion .accordion-button {
-    font-size: 1rem;
-    padding: 1rem;
-  }
-  .how-to-use-page .pro-tips-card .card-body {
-    padding: 1.5rem;
-  }
-}
+.howto-panel-title { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; font-size: 1.5rem; font-weight: 800; }
+.howto-panel-title i { color: var(--brand, #6366f1); }
 
-/* Dark mode overrides (scoped) */
-.dark-mode .how-to-use-page .role-card,
-.dark-mode .how-to-use-page .pro-tips-card,
-.dark-mode .how-to-use-page .custom-accordion .accordion-item,
-.dark-mode .how-to-use-page .custom-accordion .accordion-button,
-.dark-mode .how-to-use-page .custom-accordion .accordion-body,
-.dark-mode .how-to-use-page .alert {
-  background-color: var(--card-bg) !important;
-  color: var(--text-primary) !important;
-  border-color: var(--border-color) !important;
-}
-.dark-mode .how-to-use-page .role-card .card-title,
-.dark-mode .how-to-use-page .role-card .card-text,
-.dark-mode .how-to-use-page .pro-tips-card h5,
-.dark-mode .how-to-use-page .pro-tips-card ul li {
-  color: var(--text-primary);
-}
-.dark-mode .how-to-use-page .role-card .card-text {
-  color: var(--text-secondary);
-}
-.dark-mode .how-to-use-page .custom-accordion .accordion-button {
-  color: var(--text-primary);
-  background-color: var(--bg-secondary) !important;
-}
-.dark-mode .how-to-use-page .custom-accordion .accordion-button:not(.collapsed) {
-  color: var(--search-primary);
-}
-.dark-mode .how-to-use-page .custom-accordion .accordion-button::after {
-  filter: invert(var(--dark-mode-invert));
-}
-.dark-mode .how-to-use-page .alert-info {
-  background-color: rgba(102, 126, 234, 0.2) !important;
-  border-color: var(--search-primary) !important;
-  color: var(--text-primary) !important;
-}
-.dark-mode .how-to-use-page .alert-warning {
-  background-color: rgba(241, 196, 15, 0.2) !important;
-  border-color: #f1c40f !important;
-  color: var(--text-primary) !important;
-}
-.dark-mode .how-to-use-page .pro-tips-card {
-  background-color: var(--bg-secondary) !important;
-}
-.dark-mode .how-to-use-page .pro-tips-card ul li {
-  color: var(--text-secondary);
-}
-.dark-mode .how-to-use-page .alert .text-primary,
-.dark-mode .how-to-use-page .alert .text-success,
-.dark-mode .how-to-use-page .alert .text-warning {
-  color: inherit !important;
-}
-.dark-mode .how-to-use-page .role-card,
-.dark-mode .how-to-use-page .custom-accordion .accordion-item {
-  box-shadow: var(--shadow-sm);
-}
-
-.how-to-use-page .lead.text-muted,
-.how-to-use-page .text-muted {
-    color: var(--text-secondary) !important;
+@media (max-width: 767.98px) {
+  .howto-tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  .howto-tabs::-webkit-scrollbar { display: none; }
+  .howto-tab { flex: 0 0 auto; }
+  .howto-panel { padding: 1.15rem; border-radius: 20px; }
 }
