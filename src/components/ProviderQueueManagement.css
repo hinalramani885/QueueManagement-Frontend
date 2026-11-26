@@ -388,3 +388,32 @@
     border-color: var(--border-color);
     cursor: not-allowed;
 }
+/* ---------- Onboarding: providers sign up without a place and add theirs first ---------- */
+.pq-onboarding {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  background: var(--brand-soft, #eef0ff);
+  border: 1px dashed rgba(99, 102, 241, 0.45);
+  animation: app-fade-up 0.4s ease both;
+}
+
+.pq-onboarding h5 { color: var(--text-primary); font-weight: 700; }
+
+.pq-onboarding-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  font-size: 1.4rem;
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1, #14b8a6);
+}
+
+@media (max-width: 575.98px) {
+  .pq-onboarding .btn { width: 100%; }
+}

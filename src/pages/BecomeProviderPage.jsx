@@ -9,7 +9,7 @@ const plans = [
     period: 'month',
     icon: 'bi-person-badge',
     description: 'Start serving customers at your place.',
-    features: ['Valid for 1 month', 'Serve customers from your queues', 'Real-time queue updates'],
+    features: ['Valid for 1 month', 'Add your own place and services', 'Serve customers from your queues', 'Real-time queue updates'],
   },
   {
     name: 'Standard',
@@ -34,21 +34,20 @@ const plans = [
 
 const TRUSTED_DOMAINS = ['gmail.com', 'outlook.com', 'yahoo.com', 'hotmail.com', 'protonmail.com', 'zoho.com', 'icloud.com'];
 
-/** Public page: a service provider buys their own registration token for the place they work at. */
+/** Public page: a service provider buys their own registration token; they add their place after signing up. */
 const BecomeProviderPage = () => (
   <PlanCheckout
     role="PROVIDER"
     variant="provider"
     badge="Provider access"
     title="Become a provider"
-    subtitle="Choose the place you work at, pick a plan and pay – you get your provider registration token instantly."
+    subtitle="Pick a plan and pay to get your provider registration token instantly. After signing up you add your own business place."
     plans={plans}
     emailLabel="Your email (used for registration)"
     allowedDomains={TRUSTED_DOMAINS}
     checkoutName="QFlow Provider Access"
     checkoutDescription="Provider registration token"
     confirmEndpoint="/payment/confirm-provider"
-    placePicker
   />
 );
 

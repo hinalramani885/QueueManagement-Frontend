@@ -39,7 +39,7 @@
 }
 
 /* Bootstrap tables use their own colour variables; point them at the app theme so dark mode stays readable */
-.qf-catalog-table {
+.qf-catalog .qf-catalog-table {
   --bs-table-color: var(--text-primary);
   --bs-table-bg: var(--card-bg);
   --bs-table-hover-color: var(--text-primary);
@@ -47,7 +47,7 @@
   --bs-table-border-color: var(--border-color);
 }
 
-.qf-catalog-table th {
+.qf-catalog .qf-catalog-table th {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -57,7 +57,7 @@
   white-space: nowrap;
 }
 
-.qf-catalog-table td {
+.qf-catalog .qf-catalog-table td {
   vertical-align: middle;
   color: var(--text-primary);
   background: var(--card-bg);
@@ -156,22 +156,22 @@
   .qf-segment { width: 100%; }
   .qf-segment-btn { flex: 1; justify-content: center; }
 
-  .qf-catalog-table,
-  .qf-catalog-table tbody,
-  .qf-catalog-table tr,
-  .qf-catalog-table td {
+  .qf-catalog .qf-catalog-table,
+  .qf-catalog .qf-catalog-table tbody,
+  .qf-catalog .qf-catalog-table tr,
+  .qf-catalog .qf-catalog-table td {
     display: block;
     width: 100%;
   }
 
-  .qf-catalog-table thead { display: none; }
+  .qf-catalog .qf-catalog-table thead { display: none; }
 
-  .qf-catalog-table tr {
+  .qf-catalog .qf-catalog-table tr {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border-color);
   }
 
-  .qf-catalog-table td {
+  .qf-catalog .qf-catalog-table td {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -181,7 +181,7 @@
     white-space: normal;
   }
 
-  .qf-catalog-table td::before {
+  .qf-catalog .qf-catalog-table td::before {
     content: attr(data-label);
     flex: 0 0 auto;
     font-size: 0.72rem;
@@ -190,8 +190,8 @@
     color: var(--text-secondary);
   }
 
-  .qf-catalog-table td.text-end { justify-content: flex-end; }
-  .qf-catalog-table td[data-label='Actions']::before { content: none; }
+  .qf-catalog .qf-catalog-table td.text-end { justify-content: flex-end; }
+  .qf-catalog .qf-catalog-table td[data-label='Actions']::before { content: none; }
   .qf-catalog-address { max-width: none; text-align: right; }
 }
 
