@@ -6,6 +6,7 @@ import { Form, Button, Card, Spinner, Alert, Row, Col, InputGroup } from 'react-
 import { toast } from 'react-toastify';
 import { FaMapMarkerAlt, FaGlobe, FaPhoneAlt, FaEnvelope, FaImage, FaPlus, FaTrash, FaCheckCircle, FaTimesCircle, FaClock, FaCalendarAlt,FaBuilding } from 'react-icons/fa';
 import './PlaceForm.css'; // The new, conflict-free CSS file
+import { apiErrorMessage, canUseCatalog, placesHome } from '../utils/catalog';
 
 const DAYS_OF_WEEK = [
     'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY',
@@ -35,7 +36,8 @@ const PlaceForm = () => {
         })),
         imageUrls: [],
         isActive: true,
-        adminId: userId
+        // Admins own the places they create; for providers the server sets the owning admin
+        adminId: role === 'ADMIN' ? userId : null
     });
 
     const [newImageUrl, setNewImageUrl] = useState('');
@@ -48,9 +50,10 @@ const PlaceForm = () => {
 
     useEffect(() => {
         if (isEdit && currentPlace) {
-            if (currentPlace.adminId !== userId) {
+            // Admins can only edit their own places; for providers the server checks creator/assignment (403)
+            if (role === 'ADMIN' && currentPlace.adminId !== userId) {
                 toast.error("You don't have permission to edit this place");
-                navigate('/admin/places');
+                navigate(placesHome(role));
                 return;
             }
 
@@ -69,10 +72,10 @@ const PlaceForm = () => {
                 })),
                 imageUrls: currentPlace.imageUrls || [],
                 isActive: currentPlace.isActive !== undefined ? currentPlace.isActive : true,
-                adminId: userId
+                adminId: role === 'ADMIN' ? userId : currentPlace.adminId
             });
         }
-    }, [currentPlace, isEdit, userId, navigate]);
+    }, [currentPlace, isEdit, userId, role, navigate]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -137,9 +140,9 @@ const PlaceForm = () => {
                 await dispatch(createPlace(finalFormData)).unwrap();
                 toast.success('Place created successfully!');
             }
-            navigate('/admin/places');
+            navigate(placesHome(role));
         } catch (error) {
-            toast.error(`Failed to ${isEdit ? 'update' : 'create'} place: ${error.message}`);
+            toast.error(`Failed to ${isEdit ? 'update' : 'create'} place: ${apiErrorMessage(error)}`);
         }
     };
 
@@ -152,7 +155,7 @@ const PlaceForm = () => {
         );
     }
 
-    if (role !== 'ADMIN') {
+    if (!canUseCatalog(role)) {
         return (
             <Alert variant="danger" className="mt-4 text-center">
                 <FaTimesCircle className="me-2" /> You don't have permission to access this page.
@@ -168,7 +171,7 @@ const PlaceForm = () => {
                     <p className="text-muted">{isEdit ? 'Update details for your existing business.' : 'Enter details for your new business or shop.'}</p>
                 </Card.Header>
                 <Card.Body className="ql-pf-card-body">
-                    {error && <Alert variant="danger" className="ql-pf-alert">{error.message}</Alert>}
+                    {error && <Alert variant="danger" className="ql-pf-alert">{apiErrorMessage(error)}</Alert>}
 
                     <Form onSubmit={handleSubmit}>
                         {/* Basic Information Section */}
@@ -414,7 +417,7 @@ const PlaceForm = () => {
 
                         {/* Form Submission */}
                         <div className="d-flex gap-3 justify-content-end ql-pf-action-buttons mt-4">
-                            <Button type="button" variant="outline-secondary" onClick={() => navigate('/admin/places')} className="ql-pf-btn-cancel">
+                            <Button type="button" variant="outline-secondary" onClick={() => navigate(placesHome(role))} className="ql-pf-btn-cancel">
                                 Cancel
                             </Button>
                             <Button type="submit" variant="primary" disabled={loading} className="ql-pf-btn-submit">

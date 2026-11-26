@@ -23,7 +23,7 @@ const TABS = {
   ],
   PROVIDER: [
     { to: '/provider/queues', icon: 'bi-list-ol', activeIcon: 'bi-list-ol', label: 'Queues' },
-    { to: '/places', icon: 'bi-buildings', activeIcon: 'bi-buildings-fill', label: 'Places' },
+    { to: '/provider/places', icon: 'bi-buildings', activeIcon: 'bi-buildings-fill', label: 'My Places' },
     { scan: true },
     { to: '/search', icon: 'bi-search', activeIcon: 'bi-search', label: 'Search' },
     { to: '/profile', icon: 'bi-person-circle', activeIcon: 'bi-person-circle', label: 'Profile' },

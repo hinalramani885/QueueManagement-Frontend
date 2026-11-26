@@ -175,6 +175,28 @@ function App() {
 
             <Route path="/provider/dashboard" element={<Navigate to="/provider/queues" />} />
 
+            {/* Provider places & services (same screens as admin; ownership is enforced by the API) */}
+            <Route path="/provider/places" element={
+              <ProtectedRoute allowedRoles={['PROVIDER']}>
+                <AdminPlaces />
+              </ProtectedRoute>
+            } />
+            <Route path="/provider/places/new" element={
+              <ProtectedRoute allowedRoles={['PROVIDER']}>
+                <PlaceForm />
+              </ProtectedRoute>
+            } />
+            <Route path="/provider/places/edit/:id" element={
+              <ProtectedRoute allowedRoles={['PROVIDER']}>
+                <PlaceForm />
+              </ProtectedRoute>
+            } />
+            <Route path="/provider/places/:placeId/services" element={
+              <ProtectedRoute allowedRoles={['PROVIDER']}>
+                <ServiceManagement />
+              </ProtectedRoute>
+            } />
+
             <Route path="/admin/dashboard" element={
               <ProtectedRoute allowedRoles={['ADMIN']}>
                 <AdminDashboard />

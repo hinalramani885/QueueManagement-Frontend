@@ -76,6 +76,19 @@ export const fetchMyPlaces = createAsyncThunk(
   }
 );
 
+/** Places the logged-in PROVIDER created or is assigned to. */
+export const fetchProviderPlaces = createAsyncThunk(
+  'places/fetchProvider',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await placeService.getProviderPlaces();
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const fetchPlacesPaginated = createAsyncThunk(
   'places/fetchPaginated',
   async ({ page = 0, size = 20, sort = 'name,asc' }, { rejectWithValue }) => {
@@ -142,6 +155,18 @@ const placeSlice = createSlice({
       .addCase(fetchPlacesPaginated.rejected, (state, action) => {
         state.paginated.loading = false;
         state.paginated.error = action.payload;
+      })
+      .addCase(fetchProviderPlaces.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchProviderPlaces.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchProviderPlaces.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(fetchMyPlaces.pending, (state) => {
         state.loading = true;

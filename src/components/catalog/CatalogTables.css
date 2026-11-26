@@ -1,0 +1,202 @@
+/* Places & Services catalog (admin dashboard tab, provider places) */
+
+.qf-catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  animation: app-fade-up 0.4s ease both;
+}
+
+.qf-catalog-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.qf-catalog-card {
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.qf-catalog-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  background: var(--brand-soft, #eef0ff);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.qf-catalog-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* Bootstrap tables use their own colour variables; point them at the app theme so dark mode stays readable */
+.qf-catalog-table {
+  --bs-table-color: var(--text-primary);
+  --bs-table-bg: var(--card-bg);
+  --bs-table-hover-color: var(--text-primary);
+  --bs-table-hover-bg: var(--brand-soft, #eef0ff);
+  --bs-table-border-color: var(--border-color);
+}
+
+.qf-catalog-table th {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  white-space: nowrap;
+}
+
+.qf-catalog-table td {
+  vertical-align: middle;
+  color: var(--text-primary);
+  background: var(--card-bg);
+}
+
+.qf-catalog-address {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Creator badge ---------- */
+.qf-creator {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.qf-creator-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.qf-creator-role--admin {
+  color: #3730a3;
+  background: #e0e7ff;
+}
+
+.qf-creator-role--provider {
+  color: #0f766e;
+  background: #ccfbf1;
+}
+
+.dark-mode .qf-creator-role--admin { color: #c7d2fe; background: rgba(99, 102, 241, 0.18); }
+.dark-mode .qf-creator-role--provider { color: #5eead4; background: rgba(20, 184, 166, 0.16); }
+
+.qf-creator-name {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+/* ---------- All / Admin / Provider filter ---------- */
+.qf-segment {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.qf-segment-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 36px;
+  padding: 0.3rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.qf-segment-btn:hover { color: var(--text-primary); }
+
+.qf-segment-btn.is-active {
+  color: #fff;
+  background: var(--brand-gradient, linear-gradient(135deg, #6366f1, #8b5cf6));
+  box-shadow: 0 6px 14px -8px rgba(99, 102, 241, 0.8);
+}
+
+.qf-segment-count {
+  min-width: 1.4rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.qf-segment-btn.is-active .qf-segment-count { background: rgba(255, 255, 255, 0.25); }
+.dark-mode .qf-segment-count { background: rgba(255, 255, 255, 0.08); }
+
+/* ---------- Phones: each table row becomes a card ---------- */
+@media (max-width: 767.98px) {
+  .qf-catalog-toolbar { flex-direction: column; align-items: stretch; }
+  .qf-segment { width: 100%; }
+  .qf-segment-btn { flex: 1; justify-content: center; }
+
+  .qf-catalog-table,
+  .qf-catalog-table tbody,
+  .qf-catalog-table tr,
+  .qf-catalog-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .qf-catalog-table thead { display: none; }
+
+  .qf-catalog-table tr {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .qf-catalog-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.3rem 0;
+    border: 0;
+    white-space: normal;
+  }
+
+  .qf-catalog-table td::before {
+    content: attr(data-label);
+    flex: 0 0 auto;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .qf-catalog-table td.text-end { justify-content: flex-end; }
+  .qf-catalog-table td[data-label='Actions']::before { content: none; }
+  .qf-catalog-address { max-width: none; text-align: right; }
+}
+
+/* place switcher in ServiceManagement */
+.sm-place-switch {
+  max-width: 340px;
+  margin-top: 0.25rem;
+}

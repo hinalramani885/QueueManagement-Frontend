@@ -3,19 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchServicesByPlace, createService, updateService, deleteService } from '../redux/serviceSlice';
-import { fetchPlaceById } from '../redux/placeSlice';
+import { fetchPlaceById, fetchMyPlaces, fetchProviderPlaces } from '../redux/placeSlice';
 import { Form, Button, Card, Spinner, Alert, Table, Modal, Row, Col, Badge } from 'react-bootstrap';
 import { FaPlus, FaEdit, FaTrash, FaClock, FaUsers, FaAmbulance, FaExclamationTriangle } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import './ServiceManagement.css';
+import CreatorBadge from './catalog/CreatorBadge';
+import { apiErrorMessage, placesHome, servicesPath } from '../utils/catalog';
 
 const ServiceManagement = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { placeId } = useParams();
-  const { currentPlace } = useSelector((state) => state.places);
+  const { currentPlace, items: myPlaces } = useSelector((state) => state.places);
   const { servicesByPlace, loading, error } = useSelector((state) => state.services);
-  const { id: userId } = useSelector((state) => state.auth);
+  const { id: userId, role } = useSelector((state) => state.auth);
   const [showModal, setShowModal] = useState(false);
   const [editingService, setEditingService] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -38,13 +40,19 @@ const ServiceManagement = () => {
     }
   }, [dispatch, placeId]);
 
-  // Check if the current user owns this place
+  // Places this user may manage, for the place switcher (providers only see their own / assigned places)
   useEffect(() => {
-    if (currentPlace && currentPlace.adminId !== userId) {
+    if (role === 'PROVIDER') dispatch(fetchProviderPlaces());
+    else if (role === 'ADMIN') dispatch(fetchMyPlaces());
+  }, [dispatch, role]);
+
+  // Admins may only manage services of their own places; providers are checked by the server (403)
+  useEffect(() => {
+    if (role === 'ADMIN' && currentPlace && currentPlace.id === placeId && currentPlace.adminId !== userId) {
       toast.error("You don't have permission to manage services for this place");
-      navigate('/admin/places');
+      navigate(placesHome(role));
     }
-  }, [currentPlace, userId, navigate]);
+  }, [currentPlace, placeId, userId, role, navigate]);
 
   const handleShowModal = (service = null) => {
     if (service) {
@@ -104,7 +112,7 @@ const ServiceManagement = () => {
       // RE-FETCH SERVICES TO UPDATE THE LIST
       dispatch(fetchServicesByPlace(placeId));
     } catch (error) {
-      toast.error(`Failed to save service: ${error.message}`);
+      toast.error(`Failed to save service: ${apiErrorMessage(error)}`);
     }
   };
 
@@ -120,7 +128,7 @@ const ServiceManagement = () => {
       toast.success('Service deleted successfully!');
       dispatch(fetchServicesByPlace(placeId));
     } catch (error) {
-      toast.error(`Failed to delete service: ${error.message}`);
+      toast.error(`Failed to delete service: ${apiErrorMessage(error)}`);
     } finally {
       setShowDeleteModal(false);
       setDeleteServiceId(null);
@@ -137,17 +145,36 @@ const ServiceManagement = () => {
 
   return (
     <div className="container py-4 service-management-container p-4 ">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2>Manage Services</h2>
-          <p className="text-muted">{currentPlace.name}</p>
+      <div className="d-flex flex-wrap gap-3 justify-content-between align-items-center mb-4">
+        <div className="flex-grow-1">
+          <h2 className="mb-1">Manage Services</h2>
+          {myPlaces.length > 1 ? (
+            <Form.Select
+              aria-label="Choose place"
+              className="sm-place-switch"
+              value={placeId}
+              onChange={(e) => navigate(servicesPath(role, e.target.value))}
+            >
+              {!myPlaces.some((p) => p.id === placeId) && <option value={placeId}>{currentPlace.name}</option>}
+              {myPlaces.map((p) => (
+                <option key={p.id} value={p.id}>{p.name}</option>
+              ))}
+            </Form.Select>
+          ) : (
+            <p className="text-muted mb-0">{currentPlace.name}</p>
+          )}
         </div>
-        <Button onClick={() => handleShowModal()}>
-          <FaPlus className="me-2" /> Add Service
-        </Button>
+        <div className="d-flex gap-2">
+          <Button variant="outline-secondary" onClick={() => navigate(placesHome(role))}>
+            Back to places
+          </Button>
+          <Button onClick={() => handleShowModal()}>
+            <FaPlus className="me-2" /> Add Service
+          </Button>
+        </div>
       </div>
 
-      {error && <Alert variant="danger">{error.message}</Alert>}
+      {error && <Alert variant="danger">{apiErrorMessage(error)}</Alert>}
 
       {loading ? (
         <div className="d-flex justify-content-center">
@@ -167,6 +194,7 @@ const ServiceManagement = () => {
                     <th>Avg. Time</th>
                     <th>Features</th>
                     <th>Status</th>
+                    <th>Created by</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -195,6 +223,9 @@ const ServiceManagement = () => {
                         <span className={`badge ${service.isActive ? 'bg-success' : 'bg-secondary'}`}>
                           {service.isActive ? 'Active' : 'Inactive'}
                         </span>
+                      </td>
+                      <td>
+                        <CreatorBadge item={service} compact />
                       </td>
                       <td>
                         <Button

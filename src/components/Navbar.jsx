@@ -174,9 +174,14 @@ const getInitials = (fullName) =>
                     )}
 
                     {role === 'PROVIDER' && (
-                      <Button className="ql-nav-btn-outline" onClick={() => navigate('/provider/queues')}>
-                        <i className="bi bi-list-check me-2"></i>My Queues
-                      </Button>
+                      <>
+                        <Button className="ql-nav-btn-outline" onClick={() => navigate('/provider/queues')}>
+                          <i className="bi bi-list-check me-2"></i>My Queues
+                        </Button>
+                        <Button className="ql-nav-btn-info" onClick={() => navigate('/provider/places')}>
+                          <i className="bi bi-buildings me-2"></i>My Places
+                        </Button>
+                      </>
                     )}
 
                     {role === 'USER' && (

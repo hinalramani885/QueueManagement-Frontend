@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchMyPlaces, deletePlace } from '../redux/placeSlice';
+import { fetchMyPlaces, fetchProviderPlaces, deletePlace } from '../redux/placeSlice';
 import { Card, Button, Spinner, Alert, Row, Col, Modal, FormControl, InputGroup, Form } from 'react-bootstrap';
 import { FaPlus, FaEdit, FaTrash, FaBuilding, FaInfoCircle, FaSearch, FaStar } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import './AdminPlaces.css'; // The new CSS file for the enhanced design
+import CreatorBadge from './catalog/CreatorBadge';
+import CreatorFilter from './catalog/CreatorFilter';
+import { apiErrorMessage, creatorRole, editPlacePath, filterByCreator, newPlacePath, servicesPath } from '../utils/catalog';
+
+/**
+ * Places list shared by ADMIN (/admin/places: all places they own, including provider-created ones)
+ * and PROVIDER (/provider/places: places they created or are assigned to).
+ */
 
 const AdminPlaces = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { items: places, loading, error } = useSelector((state) => state.places);
-    const { token, role } = useSelector((state) => state.auth);
+    const { token, role, id: userId } = useSelector((state) => state.auth);
+    const isAdmin = role === 'ADMIN';
+    const [creatorFilter, setCreatorFilter] = useState('ALL');
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [placeToDelete, setPlaceToDelete] = useState(null);
@@ -20,11 +30,13 @@ const AdminPlaces = () => {
     useEffect(() => {
         if (token && role === 'ADMIN') {
             dispatch(fetchMyPlaces());
+        } else if (token && role === 'PROVIDER') {
+            dispatch(fetchProviderPlaces());
         }
     }, [dispatch, token, role]);
 
     const handleEditPlace = (placeId) => {
-        navigate(`/places/edit/${placeId}`);
+        navigate(editPlacePath(role, placeId));
     };
 
     const handleDeletePlace = (place) => {
@@ -39,17 +51,23 @@ const AdminPlaces = () => {
             setShowDeleteModal(false);
             setPlaceToDelete(null);
         } catch (error) {
-            toast.error(`Failed to delete place: ${error.message}`);
+            toast.error(`Failed to delete place: ${apiErrorMessage(error)}`);
         }
     };
 
     const handleManageServices = (placeId) => {
-        navigate(`/admin/places/${placeId}/services`);
+        navigate(servicesPath(role, placeId));
     };
 
-    const filteredPlaces = places.filter(place =>
-        place.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const searched = places.filter(place =>
+        (place.name || '').toLowerCase().includes(searchQuery.toLowerCase())
     );
+    const filteredPlaces = isAdmin ? filterByCreator(searched, creatorFilter) : searched;
+    const creatorCounts = {
+        ALL: searched.length,
+        ADMIN: searched.filter((p) => creatorRole(p) === 'ADMIN').length,
+        PROVIDER: searched.filter((p) => creatorRole(p) === 'PROVIDER').length,
+    };
 
     if (loading) {
         return (
@@ -66,7 +84,7 @@ const AdminPlaces = () => {
             <div className="container mt-5">
                 <Alert variant="danger" className="text-center">
                     <FaInfoCircle className="me-2" />
-                    Error loading places: {error.message}
+                    Error loading places: {apiErrorMessage(error)}
                 </Alert>
             </div>
         );
@@ -75,7 +93,14 @@ const AdminPlaces = () => {
     return (
         <div className="container-fluid py-5 ql-ap-container">
             <header className="mb-5 d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <h1 className="mb-3 mb-md-0 ql-ap-heading">My Places</h1>
+                <div className="mb-3 mb-md-0">
+                    <h1 className="mb-1 ql-ap-heading">My Places</h1>
+                    <p className="text-muted mb-0 small">
+                        {isAdmin
+                            ? 'All places you own, including places created by your providers.'
+                            : 'Places you created or that are assigned to you.'}
+                    </p>
+                </div>
                 <div className="d-flex flex-column flex-sm-row gap-3 w-100 w-md-auto">
                     <InputGroup className="flex-grow-1">
                         <InputGroup.Text className="ql-ap-search-icon-bg">
@@ -88,21 +113,29 @@ const AdminPlaces = () => {
                             className="ql-ap-search-input"
                         />
                     </InputGroup>
-                    <Button onClick={() => navigate('/places/new')} className="ql-ap-btn-add-place">
+                    <Button onClick={() => navigate(newPlacePath(role))} className="ql-ap-btn-add-place">
                         <FaPlus className="me-2" /> Add New Place
                     </Button>
                 </div>
             </header>
+
+            {isAdmin && places.length > 0 && (
+                <div className="mb-4">
+                    <CreatorFilter value={creatorFilter} onChange={setCreatorFilter} counts={creatorCounts} />
+                </div>
+            )}
 
             {places.length === 0 ? (
                 <div className="ql-ap-empty-state-card text-center py-5 shadow-sm">
                     <FaInfoCircle size={40} className="mb-3 ql-ap-empty-state-icon" />
                     <h4 className="fw-bold">No Places Found</h4>
                     <p className="text-muted">You haven't added any places yet. Get started by creating your first one!</p>
-                    <Button onClick={() => navigate('/places/new')} variant="primary" className="mt-3">
+                    <Button onClick={() => navigate(newPlacePath(role))} variant="primary" className="mt-3">
                         <FaPlus className="me-2" /> Create First Place
                     </Button>
                 </div>
+            ) : filteredPlaces.length === 0 ? (
+                <Alert variant="info" className="text-center">No places match this filter.</Alert>
             ) : (
                 <Row xs={1} md={2} lg={3} className="g-4">
                     {filteredPlaces.map((place) => (
@@ -132,6 +165,12 @@ const AdminPlaces = () => {
                                         <FaBuilding className="me-1" />
                                         {place.address}
                                     </Card.Text>
+                                    <div className="mb-2 d-flex align-items-center gap-2 small">
+                                        <span className="text-muted">Created by</span>
+                                        {!isAdmin && place.createdBy === userId
+                                            ? <span className="fw-semibold">You</span>
+                                            : <CreatorBadge item={place} />}
+                                    </div>
                                     <Card.Text className="flex-grow-1 mb-3 ql-ap-card-description">
                                         {place.description}
                                     </Card.Text>
@@ -172,7 +211,7 @@ const AdminPlaces = () => {
                     <Modal.Title className="text-danger">Confirm Deletion</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Are you sure you want to delete **{placeToDelete?.name}**?</p>
+                    <p>Are you sure you want to delete <strong>{placeToDelete?.name}</strong>?</p>
                     <p className="text-danger fw-bold">This action is permanent and cannot be undone.</p>
                 </Modal.Body>
                 <Modal.Footer>

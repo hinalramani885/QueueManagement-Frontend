@@ -7,5 +7,7 @@ export const serviceService = {
   create: (serviceData) => axiosInstance.post('/services', serviceData),
   update: (id, serviceData) => axiosInstance.put(`/services/${id}`, serviceData),
   delete: (id) => axiosInstance.delete(`/services/${id}`),
-  getByPlace: (placeId) => axiosInstance.get(`/services/place/${placeId}`)
+  getByPlace: (placeId) => axiosInstance.get(`/services/place/${placeId}`),
+  // Services under all places of the logged-in admin, including provider-created ones (with creator details)
+  getAdminServices: () => axiosInstance.get('/services/admin/my-services')
 };
